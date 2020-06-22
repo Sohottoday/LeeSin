@@ -21,4 +21,6 @@ class RequireStack(models.Model):
 
 class Stack(models.Model):
     name = models.CharField(max_length=50)
-    img = models.CharField(max_length=50)
+    img = models.CharField(max_length=100)
+    detail = models.TextField()
+    web_page = models.CharField(max_length=50)
