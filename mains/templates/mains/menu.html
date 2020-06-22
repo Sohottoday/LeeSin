@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'mains/stylesheet/nav.css' %}">
+{% endblock  %}
+
+{% block content %}
+    <div class="container">
+      <h1>메뉴를 선택해 주세요</h1>
+      <p>↗↗↗</p>
+      <!-- Everything below this is part of the menu-->
+    </div>
+    <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+      <nav class="overlay-menu">
+        <ul>
+          <li><a href="{% url 'mains:index' %}">Home</a></li>
+          <li><a href="{% url 'mains:content' %}">Content</a></li>
+          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="#">Insite</a></li>
+        </ul>
+      </nav>
+    </div>
+{% endblock  %}
+
+
+{% block javascript %}
+<script>
+$('#toggle').click(function() {
+   $(this).toggleClass('active');
+   $('#overlay').toggleClass('open');
+  });
+</script>
+{% endblock  %}

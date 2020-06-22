@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+	<link rel="stylesheet" href="{% static 'mains/stylesheet/index.css' %}">
+{% endblock  %}
+
+{% block content %}    
+<div class="sp-container">
+	<div class="sp-content">
+		<div class="sp-globe"></div>
+		<h2 class="frame-1">언어와 툴들의</h2>
+		<h2 class="frame-2">트렌드를 알아보고</h2>
+		<h2 class="frame-3">방향성을 정할 수 있는</h2>
+		<h2 class="frame-4">코 트!</h2>
+		<h2 class="frame-5">
+			<span>코 트</span><br>
+			<span>Coding</span>
+			<span>Trend</span>
+		</h2>
+		<a class="sp-circle-link" href="{% url 'mains:menu' %}">들어가기</a>
+	</div>
+</div>
+{% endblock  %}
+
+{% block javascript %}
+
+{% endblock  %}

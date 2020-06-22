@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/rank.css' %}">
+{% endblock  %}
+
+{% block content %}
+    {% comment %} <div class="container"> {% endcomment %}
+      
+{% comment %} rank page {% endcomment %}
+
+<div class="timeline-container" id="timeline-1">
+  <div class="timeline-header">
+    <h2 class="timeline-header__title">Language and Tools Ranking</h2>
+    <h3 class="timeline-header__subtitle">2020.06.20</h3>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="{% static 'mains/images/cplus.png' %}"/>
+      {% comment %} http://i.cdn.ensonhaber.com/resimler/diger/ataturk_3473.jpg {% endcomment %}
+        <h2 class="timeline__content-title">Rank 1</h2>
+        <p class="timeline__content-desc">C언어를 부분집합으로 갖고 객체 지향 및 일반화 프로그래밍과 같은 멀티 패러다임을 지원하는 프로그래밍 언어이다. 즉, C언어의 문법과 기능을 모두 사용할 수 있다. 다만, 오래된 표준은 부분집합으로 갖지 않았던 적도 있다. 1979년에 C언어에서 직접적으로 파생된 C with Classes라는 이름의 언어로 시작되었다가, 1983년에 지금의 이름을 갖게 되었다.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="{% static 'mains/images/java.png' %}"/>
+      {% comment %} http://gazetemanifesto.com/wp-content/uploads/2015/11/mustafa-kemal.jpg {% endcomment %}
+        <h2 class="timeline__content-title">Rank 2</h2>
+        <p class="timeline__content-desc">썬 마이크로시스템즈에서 1995년에 개발한 객체 지향 프로그래밍 언어. 창시자는 제임스 고슬링이다. 2010년에 오라클이 썬 마이크로시스템즈을 인수하면서 Java의 저작권을 소유하였다. 현재는 OpenJDK는 GPL2이나 오라클이 배포하는 Oracle JDK는 상업라이선스로 오라클이 돈독 올랐는지 2019년 1월부터 유료화정책을 강화하고 있다. Java EE는 이클립스 재단의 소유이다. Java 언어는 J2SE 1.4부터는 Java Community Process (JCP)에서 개발을 주도하고 있다.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="{% static 'mains/images/python.png' %}"/>
+      {% comment %} http://www.volpeypir.com/upload/3732.jpg {% endcomment %}
+        <h2 class="timeline__content-title">Rank 3</h2>
+        <p class="timeline__content-desc">1991년에 발표된 인터프리터 방식의 프로그래밍 언어.
+
+창시자는 귀도 반 로섬(Guido van Rossum). 1989년 크리스마스 주에, 연구실이 닫혀있어서 심심한 김에 만들었다. 농담이 아니고 반 로섬을 유럽에서는 애덤 스미스에 비견할 정도다. 프로그래밍 계의 경제학자라나... 심심해서 만들었다는 것은 파이썬 서문과 마이크로소프트웨어와 한 인터뷰를 보면 알겠지만 사실이다. 기술자들은 심심할 때 항상 걸작이 나온다 또는 실수로. 2000년에는 Python 2, 2008년에는 Python 3가 나왔다.
+
+이름은 귀도가 즐겨 보던 영국의 6인조 코미디 그룹 몬티 파이선에서 따왔다고 한다. 지금 CPython의 공식 GitHub 저장소를 보면 협업보조용 봇 이름들이 the-knights-who-say-ni(니라고 말하는 기사)나 bedevere(베디비어) 같이 죄다 몬티 파이선과 성배의 배역들이다. 많은 파이썬 교재들에서 변수 이름을 spam, eggs로 짓는 등 드립을 친다. 직접적 관계는 없지만 42도 필수요소. 또한 시작 프로그램 중 하나의 이름이 아이들(Idle)인데, 탄생배경을 생각해 본다면 몬티 파이선의 멤버 에릭 아이들(Eric Idle)의 이름에서 유래하였을 가능성이 높다. 물론 사전적 의미를 생각 안 하는 건 아니라서 심볼마크가 뱀 모양이다.
+
+문법이 매우 쉬워서 초보자들이 처음 프로그래밍을 배울 때 추천되는 언어이다. 오죽하면 Python의 별명이 '실행할 수 있는 의사코드(Executable pseudocode)'일 정도. 실제로도 미국 공과 대학교에서 컴퓨터 프로그래밍 입문 수업으로 Python을 많이 사용하기도 한다. 학습용으로 좋은 언어인 동시에 실사용률과 생산성도 높은 강력한 언어인 셈. 즉 접근성과 응용력이 좋다는 게 굉장히 중요하다.배우기도 쉽고 써먹기도 쉽고. Python의 이런 두 마리 토끼는 교육용 프로그래밍 언어인 BASIC이 망했어요 루트를 타게 된 결정적인 이유이다. Python은 BASIC과 달리 학교에서 배우고 끝나는 게 아니라 현업에서도 자주 쓰이는 언어이기 때문이다. 농담이 아니고 파이썬이 교육용 언어로 자리잡으면서 베이직은 마이크로소프트에 의해 산소호흡기를 달고 연명만 하는 신세가 됐다.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="{% static 'mains/images/swift.png' %}"/>
+      {% comment %} http://cdn.yemek.com/uploads/2014/11/ataturk-10-kasim.jpg {% endcomment %}
+        <h2 class="timeline__content-title">Rank 4</h2>
+        <p class="timeline__content-desc">Apple WWDC 2014에서 공개된 프로그래밍 언어.
+
+이름의 유래는 신속한, 재빠른이라는 뜻의 영단어인 Swift이다. 로고는 Swift라고 불리우는 칼새[2]를 상징하는 것으로 추정된다. 기존 Objective-C의 단점을 보완하고, LLVM/Clang[3] 컴파일러로 빌드되는 애플의 신규 프로그래밍 언어이다. 기존 Objective-C에 비해 클로저, 다중 리턴 타입, 네임스페이스, 제네릭, 타입 인터페이스 등 Objective-C에는 없었던 현대 프로그래밍 언어가 갖고 있는 기능을 많이 포함시켰으며, 이에 따라 일정한 성능 향상을 보이고 있다. 애플이 만든 언어답게 iOS와 iPadOS, macOS를 대상으로 한다.
+
+2015년 스택 오버플로우 설문조사에서 가장 좋아하는 언어 1위를 달성하였다.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="{% static 'mains/images/php.png' %}"/>
+      {% comment %} http://ataturk.istanbul.gov.tr/GalleryLibrary/12.jpg {% endcomment %}
+        <h2 class="timeline__content-title">Rank 5</h2>
+        <p class="timeline__content-desc">대표적인 서버 사이드 스크립트 언어로 한국을 비롯한 전 세계 수많은 웹 시스템의 기반이 되는 언어. 비슷한 언어로는 ASP, JSP 등이 있다. C-like 문법[1]을 사용하여, 소규모 웹 페이지 제작시 절차지향으로 작성하면 날코딩이 빠르다는 점에서 사용자, 사용처가 많다. 1995년 라스무스 러돌프에 의하여 처음 공개되었고, The PHP Group이라는 단체에서 개발 및 관리를 맡고 있다.
+
+PHP라는 이름은 원래 Personal Home Page Tools였으나, 지금은 PHP - Hypertext Preprocessor의 재귀 약자를 사용하고 있다.
+
+워드프레스, 미디어위키 등의 많은 애플리케이션이 PHP로 짜여 있다. 의외로 웹서핑을 해보면 쓰이는 곳이 많다. 우리나라 한정으로 높은 점유율을 차지한 XpressEngine과 그누보드(절차지향코드), 영카트는 PHP로 제작됐다. 그리고 우리나라 중소 쇼핑몰과 웹호스팅의 대부분이 PHP 호스팅이다. 그만큼 많이 쓰인다는 뜻.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="http://blog.istanbul1881.com/wp-content/uploads/2016/08/atat%C3%BCrk-%C3%BCn-inan%C4%B1lmaz-karizmatik-fotograf%C4%B1_861050.jpg"/>
+        <h2 class="timeline__content-title">1916</h2>
+        <p class="timeline__content-desc">Promotedto general in 1916, at age 35, he liberated two major provinces in eastern Turkey thatyear. In the next two years, he served as commander of several Ottoman armies inPalestine, Aleppo, and elsewhere, achieving another major victory by stopping the enemyadvance at Aleppo.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="http://manisanokta.com/wp-content/uploads/2014/07/ataturk-20.jpg"/>
+        <h2 class="timeline__content-title">1919</h2>
+        <p class="timeline__content-desc">On May 19, 1919, Mustafa Kemal Pasha landed in the Black Sea port of Samsun to startthe War of Independence. In defiance of the Sultan's government, he rallied a liberationarmy in Anatolia and convened the Congress of Erzurum and Sivas which established thebasis for the new national effort under his leadership.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="http://www.volpeypir.com/upload/3732.jpg"/>
+        <h2 class="timeline__content-title">1920</h2>
+        <p class="timeline__content-desc">
+          On April 23, 1920, the GrandNational Assembly was inaugurated. Mustafa Kemal Pasha was elected to its Presidency.
+          Fighting on many fronts, he led his forces to victory against rebels and invadingarmies. Following the Turkish triumph at the two major battles at Inonu in Western Turkey,the Grand National Assembly conferred on Mustafa Kemal Pasha the title ofCommander-in-Chief with the rank of Marshal.
+        </p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="http://sanatkaravani.com/wp-content/uploads/2015/11/ataturk-4.jpg"/>
+        <h2 class="timeline__content-title">1922</h2>
+        <p class="timeline__content-desc">At the end of August 1922, the Turkish armieswon their ultimate victory. Within a few weeks, the Turkish mainland was completelyliberated, the armistice signed, and the rule of the Ottoman dynasty abolished</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="https://turkcetarih.com/wp-content/uploads/2015/05/Atat%C3%BCrkveCumhuriyet.jpg"/>
+        <h2 class="timeline__content-title">1923</h2>
+        <p class="timeline__content-desc">In July 1923, the national government signed the Lausanne Treaty with Great Britain,France, Greece, Italy, and others. In mid-October, Ankara became the capital of the new Turkish State. On October 29, the Republic was proclaimed and Mustafa Kemal Pasha wasunanimously elected President of the Republic.</p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="https://pbs.twimg.com/media/Cw69H8pXUAEaSqa.jpg"/>
+        <h2 class="timeline__content-title">1934</h2>
+        <p class="timeline__content-desc">
+          The account of Atatürk's fifteen year Presidency is a saga of dramatic modernization.With indefatigable determination, he created a new political and legal system, abolished the Caliphate and made both government and education secular, gave equal rights to women,changed the alphabet and the attire, and advanced the arts and the sciences, agricultureand industry.
+          In 1934, when the surname law was adopted, the national parliament gave him the name <i><strong>"Atatürk" (Father of the Turks)</strong></i>
+        </p>
+      </div>
+    </div>
+    <div class="timeline-item" data-text="FATHER OF THE TURKS">
+      <div class="timeline__content"><img class="timeline__img" src="http://www.bik.gov.tr/wp-content/uploads/2016/11/20161110_2_20037273_15856882.jpg?fit=1024%2C863"/>
+        <h2 class="timeline__content-title">1938</h2>
+        <p class="timeline__content-desc">On November 10, 1938, following an illness of a few months, the national liberator and the Father of modern Turkey died. But his legacy to his people and to the world endures.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="demo-footer"><a href="http://www.turkishnews.com/Ataturk/life.htm" target="_blank">Source/Kaynak</a></div>
+
+      <!-- Everything below this is part of the menu-->
+    {% comment %} </div> {% endcomment %}
+    <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+      <nav class="overlay-menu">
+        <ul>
+          <li><a href="{% url 'mains:index' %}">Home</a></li>
+          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="{% url 'mains:content' %}">Content</a></li>
+          <li><a href="#">Insite</a></li>
+        </ul>
+      </nav>
+    </div>
+{% endblock  %}
+
+
+{% block javascript %}
+<script>
+$('#toggle').click(function() {
+   $(this).toggleClass('active');
+   $('#overlay').toggleClass('open');
+  });
+</script>
+
+
+{% comment %} rankpage {% endcomment %}
+<script>
+(function($) {
+  $.fn.timeline = function() {
+    var selectors = {
+      id: $(this),
+      item: $(this).find(".timeline-item"),
+      activeClass: "timeline-item--active",
+      img: ".timeline__img"
+    };
+    selectors.item.eq(0).addClass(selectors.activeClass);
+    selectors.id.css(
+      "background-image",
+      "url(" +
+        selectors.item
+          .first()
+          .find(selectors.img)
+          .attr("src") +
+        ")"
+    );
+    var itemLength = selectors.item.length;
+    $(window).scroll(function() {
+      var max, min;
+      var pos = $(this).scrollTop();
+      selectors.item.each(function(i) {
+        min = $(this).offset().top;
+        max = $(this).height() + $(this).offset().top;
+        var that = $(this);
+        if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+          selectors.item.removeClass(selectors.activeClass);
+          selectors.id.css(
+            "background-image",
+            "url(" +
+              selectors.item
+                .last()
+                .find(selectors.img)
+                .attr("src") +
+              ")"
+          );
+          selectors.item.last().addClass(selectors.activeClass);
+        } else if (pos <= max - 40 && pos >= min) {
+          selectors.id.css(
+            "background-image",
+            "url(" +
+              $(this)
+                .find(selectors.img)
+                .attr("src") +
+              ")"
+          );
+          selectors.item.removeClass(selectors.activeClass);
+          $(this).addClass(selectors.activeClass);
+        }
+      });
+    });
+  };
+})(jQuery);
+
+$("#timeline-1").timeline();
+</script>
+{% endblock  %}
