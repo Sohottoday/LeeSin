@@ -25,7 +25,9 @@ SECRET_KEY = '+8&c%ymu21v*^2b&a*-51+x#8lt1$v79zklhjvv7s4+dwm52=$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'https://cordingtrend.azurewebsites.net',
+]
 
 
 # Application definition
