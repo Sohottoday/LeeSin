@@ -1,0 +1,294 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/content1.css' %}">
+{% endblock  %}
+
+{% block content %}
+
+{% comment %} 메뉴 바 {% endcomment %}
+<div class="container">
+<section>
+  <!--for demo wrap-->
+ 
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Company</th>
+          <th>Price</th>
+          <th>Change</th>
+          {% comment %} <th>Change %</th> {% endcomment %}
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAC</td>
+          <td>AUSTRALIAN COMPANY </td>
+          <td>$1.38</td>
+          <td>+2.01</td>
+          {% comment %} <td>-0.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAD</td>
+          <td>AUSENCO</td>
+          <td>$2.38</td>
+          <td>-0.01</td>
+          {% comment %} <td>-1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>AAX</td>
+          <td>ADELAIDE</td>
+          <td>$3.22</td>
+          <td>+0.01</td>
+          {% comment %} <td>+1.36%</td> {% endcomment %}
+        </tr>
+        <tr>
+          <td>XXD</td>
+          <td>ADITYA BIRLA</td>
+          <td>$1.02</td>
+          <td>-1.01</td>
+          {% comment %} <td>+2.36%</td> {% endcomment %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+
+
+      <!-- Everything below this is part of the menu-->
+    </div>
+    <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+      <nav class="overlay-menu">
+        <ul>
+          <li><a href="{% url 'mains:index' %}">Home</a></li>
+          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="{% url 'mains:content' %}">Content</a></li>
+          <li><a href="#">Insite</a></li>
+        </ul>
+      </nav>
+    </div>
+
+{% endblock  %}
+
+{% block javascript %}
+<script>
+$('#toggle').click(function() {
+   $(this).toggleClass('active');
+   $('#overlay').toggleClass('open');
+  });
+
+
+  {% comment %} table {% endcomment %}
+  $(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+</script>
+{% endblock  %}
