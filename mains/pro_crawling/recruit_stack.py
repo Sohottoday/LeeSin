@@ -44,6 +44,7 @@ class StackCrawling:
             print(item.get_text('li'))
             # self.stacklist.append(stack.get_text('code'))
 
+    # 전처리 함수
     def morphological_analysis(self, plain_text):
         print(plain_text)
         plain_text = plain_text.replace(u'\xa0', u' ')
