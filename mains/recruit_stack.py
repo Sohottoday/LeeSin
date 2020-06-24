@@ -1,5 +1,6 @@
 # from PyKomoran import *
 import re
+from . import model_crud
 
 class StackCrawling:
     # komoran = Komoran("EXP")
@@ -33,15 +34,15 @@ class StackCrawling:
             # self.preferencelist.append(item.get_text('li'))
 
     # 기술 스택 크롤링
-    def crawling_preference(self, soup):
-
+    def crawling_stack(self, soup):
         stacks = soup.select(
             'section.section-stacks > table > tbody > tr > td > code'
         )
 
         for item in stacks:
             # item = re.sub(".","",item)
-            print(item.get_text('li'))
+            model_crud.insert_stack(item.get_text('li'))
+            # print(item.get_text('li'))
             # self.stacklist.append(stack.get_text('code'))
 
     # 전처리 함수
