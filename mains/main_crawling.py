@@ -6,7 +6,7 @@ from .recruit_stack import StackCrawling
 wordDic = {}
 
 def crawling():
-    for num in range(1990, 2000):
+    for num in range(1845, 1845+1):
         url = f'https://programmers.co.kr/job_positions/{num}'
         responce = requests.get(url)
 
@@ -21,7 +21,8 @@ def crawling():
             continue
 
         sc = StackCrawling(num)
+        # 200까지함
         # sc.crawling_stack(soup)
             
-        # sc.crawling_requried(soup)
+        sc.crawling_requried(soup)
         # sc.crawling_preference(soup)

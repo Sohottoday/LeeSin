@@ -3,8 +3,8 @@ from . import main_crawling, model_crud
 
 # Create your views here.
 def index(request):
-    # main_crawling.crawling()
-    model_crud.detail_null_stack()
+    main_crawling.crawling()
+    # model_crud.detail_null_stack()
     return render(request, 'mains/index.html')
 
 

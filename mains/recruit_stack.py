@@ -42,19 +42,26 @@ class StackCrawling:
         for item in stacks:
             # item = re.sub(".","",item)
             model_crud.insert_stack(item.get_text('li'))
-            # print(item.get_text('li'))
+            print(item.get_text('li'))
             # self.stacklist.append(stack.get_text('code'))
 
     # 전처리 함수
     def morphological_analysis(self, plain_text):
-        print(plain_text)
+        # print(plain_text)
         plain_text = plain_text.replace(u'\xa0', u' ')
-        plain_text = re.sub("[가-힣():]", "", plain_text).strip()
+        # plain_text = re.sub("[가-힣():]", "", plain_text).strip()
+        plain_text = re.sub("[가-힣]", "", plain_text).strip()
         plain_text = re.sub("[ ]+", " ", plain_text).strip()
         # plain_text = plain_text.encode("utf-8")
         some_row_text = plain_text.split(", ")
-        print(some_row_text)
-        print("""\n""")
+        # print(some_row_text)
+        for item in some_row_text:
+            split2_row = re.split('[)(/)]',item)
+            for element in split2_row:
+                if not element:
+                    continue
+                model_crud.check_item_in_model(element.strip())
+        # print(some_row_text)
 
 
         # morpheme_list = komoran.get_list(plain_text)
