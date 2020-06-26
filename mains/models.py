@@ -4,11 +4,11 @@ from imagekit.processors import ResizeToFill
 # Create your models here.
 
 
-class Stack(models.Model):
+class SkillStack(models.Model):
     # 스택 이름
     name = models.CharField(max_length=50, primary_key=True)
     # 스택 이미지
-    img = ProcessedImageField(upload_to='media',
+    img = ProcessedImageField(upload_to='icon',
                               processors=[ResizeToFill(500, 500)],
                               format='JPEG',
                               options={'quality': 60})
@@ -50,4 +50,4 @@ class Recruit(models.Model):
     uploed = models.TimeField(auto_now=True)
     company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
     created_at = models.DateTimeField(auto_now_add=True)
-    wants_stacks = models.ManyToManyField(Stack, related_name='wants_stacks')
+    wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')

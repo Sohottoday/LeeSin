@@ -22,7 +22,12 @@ def crawling():
 
         sc = StackCrawling(num)
         # 200까지함
-        # sc.crawling_stack(soup)
+        sc.crawling_stack(soup)
             
-        sc.crawling_requried(soup)
-        # sc.crawling_preference(soup)
+        requriedDic = sc.crawling_requried(soup)
+        preferenceDic = sc.crawling_preference(soup)
+        positionDic = sc.crawling_position(soup)
+        
+        stackDic = {**requriedDic, **preferenceDic, **positionDic}
+
+        print(stackDic)

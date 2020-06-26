@@ -13,6 +13,10 @@ ENV PYTHONUNBUFFERED 1
 # WORKDIR /usr/src/app
 # COPY requirements.txt ./
 RUN pip install django==2.1.15
+RUN pip install Pillow
+RUN pip install beautifulsoup4
+RUN pip install requests
+RUN pip install django-imagekit==4.0.2
 # RUN pip install -r requirements.txt
 # COPY . /app/
 
