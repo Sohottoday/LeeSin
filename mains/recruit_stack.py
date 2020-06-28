@@ -8,9 +8,6 @@ class StackCrawling:
 
     def __init__(self, recruitID):
         self.recruitID = recruitID
-        self.preferencelist = []
-        self.requiredlist = []
-        self.stacklist = []
 
     # 자격 사항 크롤링
     def crawling_requried(self, soup):

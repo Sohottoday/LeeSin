@@ -33,11 +33,13 @@ class Company(models.Model):
     homepage = models.CharField(max_length=50)
     # 이 데이터 생성일
     created_at = models.DateTimeField(auto_now_add=True)
-    # 데이터 마지막 업데이트 일
-    updated_at = models.DateTimeField(auto_now=True)
+    # 공고
+    recruit = models.ManyToManyField(Recruit, related_name='post_company')
 
 
 class Recruit(models.Model):
+    # 공고 타이틀
+    title = models.CharField(max_length=50)
     # 모집 직종
     carear = models.CharField(max_length=50)
     # 원하는 경력 몇년 이상
