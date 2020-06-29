@@ -2,7 +2,7 @@ import re
 
 
 class RecruitCrawling:
-    def __init__(self, index, url):
+    def __init__(self, index, url, site):
         # self.company_id = company_id
         self.index = index
         self.title = None
@@ -10,6 +10,7 @@ class RecruitCrawling:
         self.carear_start = None
         self.carear_end = None
         self.url = url
+        self.site = site
         # 게시일은 그냥 크롤링한 날자 그대로 넣자.
 
     def crawling_recruit_all(self, soup):

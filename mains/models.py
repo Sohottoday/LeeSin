@@ -31,9 +31,13 @@ class Recruit(models.Model):
     # 원하는 경력 몇년 이하
     carear_end = models.IntegerField()
     # 모집 페이지
-    recruit_page = models.CharField(max_length=50)
+    recruit_page = models.CharField(max_length=200)
+    # 그 사이트에서의 인덱스
+    index = models.IntegerField()
+    # 공고가 올라온 사이트
+    site = models.CharField(max_length=50)
     # 데이터 베이스에 공고가 올라온 날짜
-    upload_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     # 원하는 기술 스택
     wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')
     # uploed = models.TimeField(auto_now=True)

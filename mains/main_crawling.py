@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 wordDic = {}
 
 def crawling():
+    site = 'programmers'
     for num in range(1845, 1845+1):
         url = f'https://programmers.co.kr/job_positions/{num}'
         responce = requests.get(url)
@@ -34,7 +35,7 @@ def crawling():
         pp.pprint(company.__dict__)
         
         # 공고 정보 크롤링
-        recruit = RecruitCrawling(index=num, url=url)
+        recruit = RecruitCrawling(index=num, url=url, site = site)
         recruit.crawling_recruit_all(soup)
         # pp.pprint(recruit.__dict__)
         pp.pprint(recruit.__dict__)
@@ -42,5 +43,6 @@ def crawling():
         # 200까지함
         stk = StackCrawling(num)
         # pp.pprint(stk.crawling_stack_all(soup))
-        recruit_stack = stk.crawling_stack_all(soup)
+        stacks = stk.crawling_stack_all(soup)
         
+        model_crud.data_into_db(company,recruit,stacks)
