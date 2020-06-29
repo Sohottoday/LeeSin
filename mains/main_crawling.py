@@ -1,9 +1,12 @@
 from .recruit_company import CompanyCrawling
 from .recruit_detail import RecruitCrawling
 from .recruit_stack import StackCrawling
+from . import model_crud
+
+import pprint
+import re
 import requests
 from bs4 import BeautifulSoup
-import re
 
 wordDic = {}
 
@@ -21,23 +24,23 @@ def crawling():
         )
         if not is_recruit:
             continue
+
+        pp = pprint.PrettyPrinter()
+
         # 회사 정보 크롤링
         company = CompanyCrawling()
         company.crawling_compnay_all(soup)
+        # pp.pprint(company.__dict__)
+        pp.pprint(company.__dict__)
         
         # 공고 정보 크롤링
         recruit = RecruitCrawling(index=num, url=url)
         recruit.crawling_recruit_all(soup)
+        # pp.pprint(recruit.__dict__)
+        pp.pprint(recruit.__dict__)
 
-        sc = StackCrawling(num)
         # 200까지함
-        sc.crawling_stack(soup)
-            
-        requriedDic = sc.crawling_requried(soup)
-        preferenceDic = sc.crawling_preference(soup)
-        positionDic = sc.crawling_position(soup)
-        
-        stackDic = {**requriedDic, **preferenceDic, **positionDic}
-        
-
+        stk = StackCrawling(num)
+        # pp.pprint(stk.crawling_stack_all(soup))
+        recruit_stack = stk.crawling_stack_all(soup)
         

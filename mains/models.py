@@ -21,22 +21,6 @@ class SkillStack(models.Model):
     # 업데이트 일
     updated_at = models.DateTimeField(auto_now=True, null=True)
 
-
-class Company(models.Model):
-    # 회사명
-    name = models.CharField(max_length=50)
-    # 회사 규묘(인원)
-    scale = models.IntegerField()
-    # 회사 위치
-    location = models.CharField(max_length=60)
-    # 회사 홈페이지
-    homepage = models.CharField(max_length=50)
-    # 이 데이터 생성일
-    created_at = models.DateTimeField(auto_now_add=True)
-    # 공고
-    recruit = models.ManyToManyField(Recruit, related_name='post_company')
-
-
 class Recruit(models.Model):
     # 공고 타이틀
     title = models.CharField(max_length=50)
@@ -49,7 +33,25 @@ class Recruit(models.Model):
     # 모집 페이지
     recruit_page = models.CharField(max_length=50)
     # 데이터 베이스에 공고가 올라온 날짜
-    uploed = models.TimeField(auto_now=True)
-    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
-    created_at = models.DateTimeField(auto_now_add=True)
+    upload_at = models.DateTimeField(auto_now_add=True)
+    # 원하는 기술 스택
     wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')
+    # uploed = models.TimeField(auto_now=True)
+    # company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
+
+class Company(models.Model):
+    # 회사명
+    name = models.CharField(max_length=50)
+    # 회사 규묘(인원)
+    scale = models.IntegerField()
+    # 회사 위치
+    location = models.CharField(max_length=60)
+    # 회사 홈페이지
+    homepage = models.CharField(max_length=50)
+    # 이 데이터 생성일
+    created_at = models.DateTimeField(auto_now_add=True)
+    # 게시한 공고
+    posted_recruit = models.ManyToManyField(Recruit, related_name='posting_company')
+
+
+    

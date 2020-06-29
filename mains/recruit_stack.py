@@ -4,10 +4,17 @@ from . import model_crud
 
 
 class StackCrawling:
-    # komoran = Komoran("EXP")
-
     def __init__(self, recruitID):
         self.recruitID = recruitID
+
+    def crawling_stack_all(self, soup):
+        requriedDic = self.crawling_requried(soup)
+        preferenceDic = self.crawling_preference(soup)
+        positionDic = self.crawling_position(soup)
+        # 기술 스택을 저장해 주기 위해서라도 필요하다.
+        stackDic = self.crawling_stack(soup)
+        stackDic = {**stackDic, **requriedDic, **preferenceDic, **positionDic}
+        return stackDic
 
     # 자격 사항 크롤링
     def crawling_requried(self, soup):
@@ -31,7 +38,6 @@ class StackCrawling:
         for item in preference:
             reDic = self.morphological_analysis(item.get_text('li'))
             wordDic = {**wordDic, **reDic}
-
         return wordDic
 
     # 업무소개 크롤링
@@ -45,7 +51,6 @@ class StackCrawling:
             # print(item)
             reDic = self.morphological_analysis(item.get_text('li'))
             wordDic = {**wordDic, **reDic}
-
         return wordDic
 
     # 기술 스택 크롤링
@@ -53,12 +58,15 @@ class StackCrawling:
         stacks = soup.select(
             'section.section-stacks > table > tbody > tr > td > code'
         )
+        stackDic = {}
         for item in stacks:
-            model_crud.insert_stack(item.get_text('li'))
+            name = item.get_text('li')
+            model_crud.insert_stack(name)
+            stackDic[name] = True
+        return stackDic
 
     # 전처리 함수
     def morphological_analysis(self, plain_text):
-
         wordDic = {}
         plain_text = plain_text.replace(u'\xa0', u' ')
         # plain_text = re.sub("[가-힣():]", "", plain_text).strip()

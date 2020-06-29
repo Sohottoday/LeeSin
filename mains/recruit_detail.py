@@ -2,7 +2,7 @@ import re
 
 
 class RecruitCrawling:
-    def __init__(self, index, url, company_id):
+    def __init__(self, index, url):
         # self.company_id = company_id
         self.index = index
         self.title = None
@@ -19,10 +19,10 @@ class RecruitCrawling:
 
     def crawling_recruit_title(self, soup):
         recruit_title = soup.select(
-        'body > div.main > div.position-show > div > header > \
+            'body > div.main > div.position-show > div > header > \
             div.header-body.col-item.col-xs-12.col-sm-12.col-md-12.col-lg-8 > h2'
         )
-        self.title = recruit_title[0].get_text('h2')
+        self.title = re.sub("\n", "", recruit_title[0].get_text('h2')).strip()
 
     def crawling_recruit_job(self, soup):
         recruit_position = soup.select(
@@ -44,9 +44,9 @@ class RecruitCrawling:
             recruit_carear_end = 0
         else:
             recruit_carear_start, recruit_carear_end = carear_text.split('~')
-            recruit_carear_start = recruit_carear_start.strip()
-            recruit_carear_end = re.sub(
-                "[^0-9]", "", recruit_carear_end.strip())
+            recruit_carear_start = int(recruit_carear_start.strip())
+            recruit_carear_end = int(re.sub(
+                "[^0-9]", "", recruit_carear_end.strip()))
 
         self.carear_start = recruit_carear_start
         self.carear_end = recruit_carear_end
