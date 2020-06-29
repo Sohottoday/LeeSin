@@ -14,12 +14,14 @@ class SkillStack(models.Model):
                               options={'quality': 60})
     # 스택 설명
     detail = models.TextField(null=True)
+    # 스택 쉐어 링크
+    stackshareLink = models.CharField(max_length=100, null=True)
     # 스택 공식 웹페이지
-    web_page = models.CharField(max_length=50, null=True)
+    webpage = models.CharField(max_length=50, null=True)
+    # 카테고리 - 에러나면 에러났다는 메세지 저장
+    category = models.CharField(max_length=50, null=True)
     # 생성일
-    created_at = models.DateTimeField(auto_now_add=True, null=True)
-    # 업데이트 일
-    updated_at = models.DateTimeField(auto_now=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class Recruit(models.Model):
     # 공고 타이틀
@@ -56,6 +58,3 @@ class Company(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # 게시한 공고
     posted_recruit = models.ManyToManyField(Recruit, related_name='posting_company')
-
-
-    
