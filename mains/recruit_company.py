@@ -24,6 +24,7 @@ class CompanyCrawling:
         comScale = soup.select(
             'section.section-summary > table > tbody > tr:nth-child(3) > td.t-content'
         )
+        # print(comScale[0].get_text('td'))
         self.scale = int(re.sub("[^0-9]", "", comScale[0].get_text('td')))
 
     # 회사 홈페이지 크롤링

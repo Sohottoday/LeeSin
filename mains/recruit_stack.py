@@ -7,6 +7,7 @@ class StackCrawling:
     def __init__(self, recruitID):
         self.recruitID = recruitID
 
+    # 밑에 매서드 전부 실행, 및 추출된 단어로 딕셔너리 생성
     def crawling_stack_all(self, soup):
         requriedDic = self.crawling_requried(soup)
         preferenceDic = self.crawling_preference(soup)
@@ -61,7 +62,9 @@ class StackCrawling:
         stackDic = {}
         for item in stacks:
             name = item.get_text('li')
-            model_crud.insert_stack(name)
+            if '(' in name:
+                name = re.sub(")","",name.split('(')[1])
+            model_crud.find_stack(name)
             stackDic[name] = True
         return stackDic
 
