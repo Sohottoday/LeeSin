@@ -11,7 +11,8 @@ class SkillStack(models.Model):
     img = ProcessedImageField(upload_to='icon',
                               processors=[ResizeToFill(500, 500)],
                               format='JPEG',
-                              options={'quality': 60})
+                              options={'quality': 60},
+                              default="icon/dummy.png")
     # 스택 설명
     detail = models.TextField(null=True)
     # 스택 쉐어 링크

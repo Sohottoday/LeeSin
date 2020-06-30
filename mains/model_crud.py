@@ -48,18 +48,13 @@ def create_recruit(recuit):
 def recruit_link_company(company, recuit):
     company.posted_recruit.add(recuit)
 
-
-def insert_stack(name):
-    stack = SkillStack(name=name)
-    stack.save()
-    return stack
-
-
+# DB에 기술 스택이 있는지 확인 및 삭제
 def find_stack(name):
     try:
         stk = SkillStack.objects.get(name=name)
     except SkillStack.DoesNotExist:
-        stk = insert_stack(name)
+        stk = SkillStack(name=name)
+        stk.save()
     return stk
 
 
@@ -74,19 +69,23 @@ def detail_null_stack():
     for i in range(len(filered_stk)):
         cs = Crawling_Stack(filered_stk[i].name)
         result = cs.crawling_all()
-        if result:
+        # if result:
+        #     print(f'StackDB-error-occured-name : {filered_stk[i].name}')
+        #     filered_stk[i].category = 'Error-occured'
+        #     filered_stk[i].category = cs.stackshareLink
+        #     filered_stk[i].save()
+        #     continue
+        try:
+            filered_stk[i].img = cs.img
+            filered_stk[i].detail = cs.detail
+            filered_stk[i].stackshareLink = cs.stackshareLink
+            filered_stk[i].webpage = cs.webpage
+            filered_stk[i].category = cs.category
+            # filered_stk[i].save()
+        except Exception as e:
             print(f'StackDB-error-occured-name : {filered_stk[i].name}')
-            filered_stk[i].category = 'Error-occured'
-            filered_stk[i].category = cs.stackshareLink
-            filered_stk[i].save()
-            continue
-        filered_stk[i].img = cs.img
-        filered_stk[i].detail = cs.detail
-        filered_stk[i].stackshareLink = cs.stackshareLink
-        filered_stk[i].webpage = cs.webpage
-        filered_stk[i].category = cs.category
         filered_stk[i].save()
-        time.sleep(5)
+        time.sleep(1)
 
 
 def check_item_in_model(search_stack):

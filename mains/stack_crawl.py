@@ -16,7 +16,7 @@ class Crawling_Stack:
         name=name.replace(".","")
         self.stackshareLink = f'https://stackshare.io/{name}'
 
-    # 모든걸 크롤링하는 코드
+    # 밑에 매서드를 전부 종합해 인스턴스에 넣는다.
     def crawling_all(self):
         responce = requests.get(self.stackshareLink)
         soup = BeautifulSoup(responce.text, 'html.parser')
@@ -25,26 +25,14 @@ class Crawling_Stack:
             self.crawling_img(soup)
             self.crawling_detail(soup)
             self.crawling_category(soup)
-            return False
-        except IndexError:
-            # print(f'StackDB-error-occured-name : {e}')
-            try :
-                self.crawling_stack_company_img(soup)
-                self.crawling_stack_company_link(soup)
-                return True
-            except Exception as e:
-                print(f'StackDB-error-occured-name : {e}')
-                pass
         except Exception as e:
             print(f'StackDB-error-occured-name : {e}')
-            return True
 
     # 공식 페이지 크롤링
     def crawling_webpage(self, soup):
         soup2 = soup.select(
             'div.css-mgyi0p > div > div > div > div > a'
         )
-        print(soup2)
         self.webpage = soup2[0].get('href')
 
     # 이미지를 크롤링

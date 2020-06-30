@@ -4,259 +4,49 @@
 {% block style %}
     <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
     <link rel="stylesheet" href="{% static 'mains/stylesheet/content.css' %}">
+
+    <style>
+    </style>
 {% endblock  %}
 
 {% block content %}
 
 {% comment %} 메뉴 바 {% endcomment %}
 <div class="container">
-<section>
-  <!--for demo wrap-->
- 
-  <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
+  <div class="mt-5">
+    <table class="table table-hover text-center">
+      <thead class="thead-dark">
         <tr>
-          <th>Code</th>
-          <th>Company</th>
-          <th>Price</th>
-          <th>Change</th>
-          {% comment %} <th>Change %</th> {% endcomment %}
+          <th scope="col">Rank</th>
+          <th scope="col">Stack</th>
+          <th scope="col">Count</th>
+          <th scope="col">More</th>
+          <th scope="col">More</th>
         </tr>
       </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
       <tbody>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAC</td>
-          <td>AUSTRALIAN COMPANY </td>
-          <td>$1.38</td>
-          <td>+2.01</td>
-          {% comment %} <td>-0.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAD</td>
-          <td>AUSENCO</td>
-          <td>$2.38</td>
-          <td>-0.01</td>
-          {% comment %} <td>-1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>AAX</td>
-          <td>ADELAIDE</td>
-          <td>$3.22</td>
-          <td>+0.01</td>
-          {% comment %} <td>+1.36%</td> {% endcomment %}
-        </tr>
-        <tr>
-          <td>XXD</td>
-          <td>ADITYA BIRLA</td>
-          <td>$1.02</td>
-          <td>-1.01</td>
-          {% comment %} <td>+2.36%</td> {% endcomment %}
-        </tr>
+        {% for item in stk_rank %}
+          {% if forloop.counter|divisibleby:2 == 0 %}
+            <tr class="table-secondary">
+          {% else %}
+            <tr class="table-success">
+          {% endif %}
+            <th scope="row">{{forloop.counter}}</th>
+            
+              <td><img src="/media/{{item.img}}" width="30px"></td>
+            
+              <td><img src="/media/icon/dummy.png" width="30px"></td>
+            
+            {% comment %} <td>{{item.img}}</td> {% endcomment %}
+            <td>{{item.name}}</td>
+            <td>{{item.wants_stacks__count}}</td>
+            <td><a href="{{item.stackshareLink}}">More Info</a></td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
-</section>
+</div>
 
 
 
