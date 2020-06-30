@@ -26,23 +26,35 @@ class Crawling_Stack:
             self.crawling_detail(soup)
             self.crawling_category(soup)
             return False
+        except IndexError:
+            # print(f'StackDB-error-occured-name : {e}')
+            try :
+                self.crawling_stack_company_img(soup)
+                self.crawling_stack_company_link(soup)
+                return True
+            except Exception as e:
+                print(f'StackDB-error-occured-name : {e}')
+                pass
         except Exception as e:
             print(f'StackDB-error-occured-name : {e}')
             return True
 
     # 공식 페이지 크롤링
     def crawling_webpage(self, soup):
-        self.webpage = soup.select(
-            'div.css-mgyi0p > div.css-ii8qy4 > div > div > div > a'
-        )[0].get('href')
+        soup2 = soup.select(
+            'div.css-mgyi0p > div > div > div > div > a'
+        )
+        print(soup2)
+        self.webpage = soup2[0].get('href')
 
     # 이미지를 크롤링
     def crawling_img(self, soup):
-        imgSelect = soup.select(
+        imgselect = soup.select(
             'img'
         )
-        imgURL=imgSelect[0].get('src')
-        urllib.request.urlretrieve(imgURL, f'media/icon/{self.name}.{imgURL.split(".")[-1]}')
+        imgURL = imgselect[0].get('src')
+        urllib.request.urlretrieve(
+            imgURL, f'media/icon/{self.name}.{imgURL.split(".")[-1]}')
         self.img = f'icon/{self.name}.{imgURL.split(".")[-1]}'
 
     # 상세 정보 크롤링
@@ -60,3 +72,24 @@ class Crawling_Stack:
                 div.css-1nbl3qb > div > div:nth-child(3)> strong'
         )
         self.category=categoryselect[0].get_text('strong')
+
+    def crawling_stack_company_img(self, soup):
+        imgselect = soup.select(
+            'div >  * > img'
+        )
+        imgURL = imgselect[0].get('src')
+        urllib.request.urlretrieve(
+            imgURL, f'{self.name}.{imgURL.split(".")[-1]}')
+        self.img = f'icon/{self.name}.{imgURL.split(".")[-1]}'
+
+    def crawling_stack_company_link(self, soup):
+        try:
+            soup2 = soup.select(
+                'div > div > * > div > a:nth-child(2) > span'
+            )
+            self.webpage = soup2[0].get_text('span')
+        except:
+            soup2 = soup.select(
+                'div > div > * > div > a:nth-child(1) > span'
+            )
+            self.webpage = soup2[0].get_text('span')

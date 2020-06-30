@@ -3,8 +3,20 @@ from .recruit_company import CompanyCrawling
 from .recruit_detail import RecruitCrawling
 from .stack_crawl import Crawling_Stack
 import re
+from django.db.models import Max
+import time
 
+# 크롤링할 다음 인덱스를 반환
+def get_start_number(site_name):
+    result = Recruit.objects.filter(site=site_name).aggregate(Max('index'))
+    # print(result)
+    result = result.get('index__max')
+    if result is None:
+        return 0
+    else:
+        return result
 
+# 
 def data_into_db(company, recuit, stacks):
     com = find_company(company)
     posting = create_recruit(recuit)
@@ -74,6 +86,7 @@ def detail_null_stack():
         filered_stk[i].webpage = cs.webpage
         filered_stk[i].category = cs.category
         filered_stk[i].save()
+        time.sleep(5)
 
 
 def check_item_in_model(search_stack):
