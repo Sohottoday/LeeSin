@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/insite.css' %}">
+{% endblock  %}
+
+{% block content %}
+{% comment %} 이미지 출력 {% endcomment %}
+<div class="container">
+  <div class="main-img">
+    <img src="{% static 'mains/images/insite.jpg' %}" id="current">
+  </div>
+
+  <div class="imgs">
+    <img src="{% static 'mains/images/insite.jpg' %}">
+    <img src="{% static 'mains/images/push.png' %}">
+    <img src="{% static 'mains/images/pullrequest.png' %}">
+    <img src="{% static 'mains/images/issue.png' %}">
+    {% comment %} <img src="{% static 'mains/images/stars.png' %}">
+    <img src="{% static 'mains/images/insite.jpg' %}">
+    <img src="{% static 'mains/images/insite.jpg' %}">
+    <img src="{% static 'mains/images/insite.jpg' %}"> {% endcomment %}
+    </div>
+</div>
+
+
+
+{% comment %} 메뉴바 {% endcomment %}
+   <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+      <nav class="overlay-menu">
+        <ul>
+          <li><a href="{% url 'mains:index' %}">Home</a></li>
+          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="{% url 'mains:content' %}">Content</a></li>
+          <li><a href="{% url 'mains:insite' %}">Insite</a></li>
+        </ul>
+      </nav>
+    </div>
+{% endblock  %}
+
+{% block javascript %}
+    <script>
+    // 메뉴바
+    $('#toggle').click(function() {
+        $(this).toggleClass('active');
+        $('#overlay').toggleClass('open');
+        });
+
+
+    // 이미지
+    const current = document.querySelector('#current');
+    const imgs = document.querySelector('.imgs');
+    const img = document.querySelectorAll('.imgs img');
+    const opacity = 0.6;
+
+    // 이미지 셋팅
+    img[0].style.opacity = opacity;
+
+    imgs.addEventListener('click', imgClick);
+
+    function imgClick(e) {
+    // 투명도 변경
+    img.forEach(img => (img.style.opacity = 1));
+
+    //클릭한 이미지로 변경
+    current.src = e.target.src;
+
+    // fade 효과 추가
+    current.classList.add('fade-in');
+
+    // fade효과 0.5초뒤 제거
+    setTimeout(() => current.classList.remove('fade-in'), 500);
+
+    // 투명도 조절
+    e.target.style.opacity = opacity;
+    }
+
+    </script>
+
+
+{% endblock  %}
