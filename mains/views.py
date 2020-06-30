@@ -3,6 +3,7 @@ from . import main_crawling, model_crud
 
 from django.shortcuts import render
 from django.db.models import Count
+import requests
 
 # Create your views here.
 def index(request):
@@ -35,3 +36,20 @@ def content(request):
 
 def content1(request):
     return render(request, 'mains/content1.html')
+
+
+def insite(request):
+    return render(request, 'mains/insite.html')
+
+# DB 생성용
+def issuejavascript(request):
+    URL = 'https://api.github.com/search/issues?q=language:'
+    params = ['javascript', 'java']
+
+    for param in params:
+        response = requests.get(URL+param)
+        issue = response.json().get('total_count')
+    
+    javascript = CountIssue(javascript=issue)
+    javascript.save()
+    return render(request, 'mains/insite.html')

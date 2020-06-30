@@ -134,11 +134,8 @@ STATICFILES_DIRS = [
 STATIC_URL = '/static/'
 AUTH_USER_MODEL = 'accounts.User'
 
-# 사용자가 파일에 접근하는 URL
-# URL을 저장하는 변수 : 즉 찾으면, 저 루트를 찾아간다.
-# 다른 걸로 바꿔도 되지만,굳이 다른걸 쓸 필요는 없다.
+
 MEDIA_URL = '/media/'
-# 실제 파일을 저장할 위치
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 
