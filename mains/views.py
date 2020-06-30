@@ -1,5 +1,6 @@
 from .models import *
 from . import main_crawling, model_crud
+import time
 
 from django.shortcuts import render
 from django.db.models import Count
@@ -42,14 +43,88 @@ def insite(request):
     return render(request, 'mains/insite.html')
 
 # DB 생성용
-def issuejavascript(request):
+def issue(request):
     URL = 'https://api.github.com/search/issues?q=language:'
-    params = ['javascript', 'java']
+    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby', 'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
+    langcount = []
 
     for param in params:
         response = requests.get(URL+param)
         issue = response.json().get('total_count')
+        langcount.append(issue)
+        time.sleep(7)
+
+    print(langcount)
     
-    javascript = CountIssue(javascript=issue)
-    javascript.save()
+    issuecounting = CountIssue(
+        javascript=langcount[0],
+        java=langcount[1],
+        python=langcount[2],
+        c=langcount[3],
+        csharp=langcount[4],
+        cplus=langcount[5],
+        go=langcount[6],
+        ruby=langcount[7],
+        typescript=langcount[8],
+        php=langcount[9],
+        scala=langcount[10],
+        rust=langcount[11],
+        kotlin=langcount[12],
+        swift=langcount[13],
+        shell=langcount[14]  
+    )    
+
+    issuecounting.save()
     return render(request, 'mains/insite.html')
+
+
+def repository(request):
+    URL = 'https://api.github.com/search/repositories?q=language:'
+    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby', 'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
+    langcount = []
+
+    for param in params:
+        response = requests.get(URL+param)
+        issue = response.json().get('total_count')
+        langcount.append(issue)
+        time.sleep(7)
+
+    print(langcount)
+    
+    repocounting = CountRepository(
+        javascript=langcount[0],
+        java=langcount[1],
+        python=langcount[2],
+        c=langcount[3],
+        csharp=langcount[4],
+        cplus=langcount[5],
+        go=langcount[6],
+        ruby=langcount[7],
+        typescript=langcount[8],
+        php=langcount[9],
+        scala=langcount[10],
+        rust=langcount[11],
+        kotlin=langcount[12],
+        swift=langcount[13],
+        shell=langcount[14]  
+    )    
+
+    repocounting.save()
+    return render(request, 'mains/insite.html')
+
+
+
+
+
+# def issuepython(request):
+#     URL = 'https://api.github.com/search/issues?q=language:'
+        
+#     response = requests.get(URL+'python')
+#     issue = response.json().get('total_count')
+    
+#     javascript = CountIssue(python=issue)     # f'{language}'
+#     javascript.save()
+#     return render(request, 'mains/insite.html')
+
+
+

@@ -10,10 +10,11 @@ import time
 wordDic = {}
 
 def init_setting():
-    site = ['programmers']
-    start_num = model_crud.get_start_number(site[0])
-    # model_crud.detail_null_stack()
-    crawling(site[0], start_num)
+    pass
+    # site = ['programmers']
+    # start_num = model_crud.get_start_number(site[0])
+    # # model_crud.detail_null_stack()
+    # crawling(site[0], start_num)
 
 def crawling(site, start_num ):
     for num in range(start_num+1, start_num + 20):
