@@ -7,16 +7,17 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
-@font-face { font-family: 'GmarketSansBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: normal; font-style: normal; }
-</style>
+        @font-face { font-family: 'GmarketSansBold'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: normal; font-style: normal; }
+        body {
+            height: 100vh;
+        }
+    </style>
 
     {% block style %}
-    
     {% endblock  %}
 </head>
 <body>
     {% block content %}
-
     {% endblock  %}
 
     <!-- JS, Popper.js, and jQuery -->
@@ -26,6 +27,5 @@
 
     {% block javascript %}
     {% endblock  %}
-
 </body>
 </html>

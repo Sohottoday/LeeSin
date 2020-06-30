@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/content.css' %}">
+{% endblock  %}
+
+{% block content %}
+
+{% comment %} 메뉴 바 {% endcomment %}
+<div class="container">
+
+ <table class="rwd-table">
+  <tr>
+    <th>Rank</th>
+    <th>Icon</th>
+    <th>Stack</th>
+    <th>HomePage</th>
+  </tr>
+  <tr>
+    <td data-th="Rank">1</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">C++</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">2</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Java</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com
+  </tr>
+  <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+    <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+    <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+    <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+    <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+    <tr>
+    <td data-th="Rank">3</td>
+    <td data-th="Icon">a</td>
+    <td data-th="Stack">Python</td>
+    <td data-th="HomePage">http://www.hello.com</td>
+  </tr>
+</table>
+
+
+      <!-- Everything below this is part of the menu-->
+    </div>
+    <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+      <nav class="overlay-menu">
+        <ul>
+          <li><a href="{% url 'mains:index' %}">Home</a></li>
+          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="{% url 'mains:content' %}">Content</a></li>
+          <li><a href="#">Insite</a></li>
+        </ul>
+      </nav>
+    </div>
+
+{% endblock  %}
+
+{% block javascript %}
+<script>
+$('#toggle').click(function() {
+   $(this).toggleClass('active');
+   $('#overlay').toggleClass('open');
+  });
+</script>
+{% endblock  %}
