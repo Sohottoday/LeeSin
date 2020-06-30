@@ -6,26 +6,47 @@ body {
     background-size : cover;
     background-position : 50% 20%;
 }
- 
-.container {
-  /* position: absolute; */
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  /* top: 40%; */
-  /* left: 0; */
-  /* margin: 0 auto; */
-  font-family: GmarketSansBold;
-  color : white;
-}
+
 .container p {
   font-size: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* h1 {
+  position: relative;
+  text-align: center;
+  font-family: GmarketSansBold;
+}
+ 
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  top: 40%;
+  left: 0;
+  margin: 0 auto;
+} */
+
+
+
+/* 메뉴바 버튼 */
 .container a {
   display: inline-block;
   position: relative;
   text-align: center;
-  color: #1abc9c;
+  color: black;
   text-decoration: none;
   font-size: 20px;
   overflow: hidden;
@@ -34,7 +55,7 @@ body {
 .container a:after {
   content: '';
   position: absolute;
-  background: #1abc9c;
+  background: black;
   height: 2px;
   width: 0%;
   transform: translateX(-50%);
@@ -46,11 +67,7 @@ body {
   width: 100%;
 }
 
-h1 {
-  position: relative;
-  text-align: center;
-  font-family: GmarketSansBold;
-}
+
 
 .button_container {
   position: fixed;

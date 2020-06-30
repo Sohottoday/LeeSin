@@ -15,3 +15,11 @@ def rank(request):
 
 def content(request):
     return render(request, 'mains/content.html')
+
+
+def insite(request):
+    return render(request, 'mains/insite.html')
+
+
+# def content1(request):
+#     return render(request, 'mains/content1.html')
