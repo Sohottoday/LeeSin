@@ -15,6 +15,9 @@ urlpatterns = [
     path('issue/', views.issue, name='issue'),
     path('repository/', views.repository, name='repository'),
     
+    # 계산 하는것
+    path('setting/', views.setting, name='setting'),
+    
 
 
     
