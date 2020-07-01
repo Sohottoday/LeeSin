@@ -11,13 +11,15 @@
 
 {% block content %}
   <div class="container col-8">
-    <div class="input-group mt-5 d-flex justify-content-between col-10">
-      <div class="col-6">
-        <input type="text" class="form-control" placeholder="언어 필터" aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <div class="input-group mt-5 d-flex justify-content-between col-5">
+      <input type="text" id= "lang_filter" class="form-control" placeholder="언어 필터" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button id = "lang_btn"class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
       </div>
-      <div class="col-6">
+      {% comment %} <div class="col-6">
         <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
       </div>
+       {% endcomment %}
     </div>
 
     <div class="mt-5">
@@ -56,17 +58,27 @@
 {% endblock  %}
 
 {% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
   $('#toggle').click(function() {
     $(this).toggleClass('active');
     $('#overlay').toggleClass('open');
     });
-
-
   {% comment %} table {% endcomment %}
   $(window).on("load resize ", function() {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
+
+  lang_btn.addEventListener('click', (event) => {
+    var getlang = document.querySelector('#lang_filter').value;
+  
+    axios.get(`/mains/content/${getlang}/filter`)
+      .then( (res)=>{
+        console.log(res.data)
+      
+      } ).catch()
+  })
+
 </script>
 {% endblock  %}

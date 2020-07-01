@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.db.models import Subquery
 from django.shortcuts import render
 from django.db.models import Count
+from django.db.models import F, Sum, Count, Case, When
 
 import time
 import requests
@@ -34,6 +35,7 @@ def content(request):
     stk_rank = SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
         Count('posted_recruit')).order_by('-posted_recruit__count')[:20]
     # print(stk_rank[0].img)
+    # print(stk_rank)
     context = {
         'stk_rank': stk_rank,
     }
@@ -47,11 +49,33 @@ def content1(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
-def filter(request, lang):
+def langfilter(request, lang):
+    result = None
     filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
                 posted_recruit.values('id'))).values('wants_stacks').\
-                    annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
+                annotate(Count("wants_stacks")).order_by('-wants_stacks__count').values('wants_stacks','wants_stacks__count')
+    # filtered = SkillStack.objects.filter(
+    #             name__in = Subquery(Recruit.objects.filter(
+    #                 id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
+    #                 posted_recruit.values('id')))
+    #                 .values('wants_stacks')\
+    #                 .annotate(Count("wants_stacks")).
+    #                 order_by('-wants_stacks__count').
+    #                 values('wants_stacks')))
+    
+    print(filtered.query)
+    
 
+
+
+
+    # result = SkillStack.objects.extra(tables= [filtered], where = ['filtered.wants_stacks=skillstack.name'])
+    # stk = filtered.objects.select_related('SkillStack')
+
+    # print(filtered)
+        # print(SkillStack.objects.get(name = item.wants_stacks))
+    # for item in filtered:
+    #     print(item.wants_stacks)
     context = {
         'filtered' : filtered,
     }
