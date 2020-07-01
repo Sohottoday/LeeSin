@@ -13,10 +13,10 @@ def init_setting():
     site = ['programmers']
     start_num = model_crud.get_start_number(site[0])
     model_crud.detail_null_stack()
-    # if start_num != 0:
-    #     crawling(site[0], start_num+1, start_num+20)
-    # else:
-    #     crawling(site[0], start_num+1, start_num+2000)
+    if start_num != 0:
+        crawling(site[0], start_num+1, start_num+20)
+    else:
+        crawling(site[0], start_num+2000, start_num+2100)
     
 def crawling(site, start_num, end_num ):
     for num in range(start_num, end_num):

@@ -1,16 +1,20 @@
 from .models import *
 from . import main_crawling, model_crud
-import time
 
+from django.http import JsonResponse
+from django.db.models import Subquery
 from django.shortcuts import render
 from django.db.models import Count
+
+import time
 import requests
 
 # Create your views here.
 
 
 def index(request):
-    main_crawling.init_setting()
+    # main_crawling.init_setting()
+
     return render(request, 'mains/index.html')
 
 
@@ -28,7 +32,7 @@ def rank(request):
 
 def content(request):
     stk_rank = SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
-        Count('wants_stacks')).order_by('-wants_stacks__count')[:20]
+        Count('posted_recruit')).order_by('-posted_recruit__count')[:20]
     # print(stk_rank[0].img)
     context = {
         'stk_rank': stk_rank,
@@ -43,10 +47,26 @@ def content1(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
+def filter(request, lang):
+    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
+                posted_recruit.values('id'))).values('wants_stacks').\
+                    annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
+
+    context = {
+        'filtered' : filtered,
+    }
+
+    return JsonResponse(context)
+
+
+
 # DB 생성용
+
+
 def issue(request):
     URL = 'https://api.github.com/search/issues?q=language:'
-    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby', 'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
+    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby',
+              'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
     langcount = []
 
     for param in params:
@@ -56,7 +76,7 @@ def issue(request):
         time.sleep(7)
 
     print(langcount)
-    
+
     issuecounting = CountIssue(
         javascript=langcount[0],
         java=langcount[1],
@@ -72,8 +92,8 @@ def issue(request):
         rust=langcount[11],
         kotlin=langcount[12],
         swift=langcount[13],
-        shell=langcount[14]  
-    )    
+        shell=langcount[14]
+    )
 
     issuecounting.save()
     return render(request, 'mains/insite.html')
@@ -81,7 +101,8 @@ def issue(request):
 
 def repository(request):
     URL = 'https://api.github.com/search/repositories?q=language:'
-    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby', 'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
+    params = ['JavaScript', 'Java', 'Python', 'C', 'C#', 'C++', 'Go', 'Ruby',
+              'TypeScript', 'PHP', 'Scala', 'Rust', 'Kotlin', 'Swift', 'Shell']
     langcount = []
 
     for param in params:
@@ -91,7 +112,7 @@ def repository(request):
         time.sleep(7)
 
     print(langcount)
-    
+
     repocounting = CountRepository(
         javascript=langcount[0],
         java=langcount[1],
@@ -107,25 +128,19 @@ def repository(request):
         rust=langcount[11],
         kotlin=langcount[12],
         swift=langcount[13],
-        shell=langcount[14]  
-    )    
+        shell=langcount[14]
+    )
 
     repocounting.save()
     return render(request, 'mains/insite.html')
 
 
-
-
-
 # def issuepython(request):
 #     URL = 'https://api.github.com/search/issues?q=language:'
-        
+
 #     response = requests.get(URL+'python')
 #     issue = response.json().get('total_count')
-    
+
 #     javascript = CountIssue(python=issue)     # f'{language}'
 #     javascript.save()
 #     return render(request, 'mains/insite.html')
-
-
-

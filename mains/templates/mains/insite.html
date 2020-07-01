@@ -26,19 +26,6 @@
 </div>
 
 
-
-{% comment %} 메뉴바 {% endcomment %}
-   <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
-    <div class="overlay" id="overlay">
-      <nav class="overlay-menu">
-        <ul>
-          <li><a href="{% url 'mains:index' %}">Home</a></li>
-          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
-          <li><a href="{% url 'mains:content' %}">Content</a></li>
-          <li><a href="{% url 'mains:insite' %}">Insite</a></li>
-        </ul>
-      </nav>
-    </div>
 {% endblock  %}
 
 {% block javascript %}

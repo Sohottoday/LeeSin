@@ -10,60 +10,48 @@
 {% endblock  %}
 
 {% block content %}
+  <div class="container col-8">
+    <div class="input-group mt-5 d-flex justify-content-between col-10">
+      <div class="col-6">
+        <input type="text" class="form-control" placeholder="언어 필터" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      </div>
+      <div class="col-6">
+        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+      </div>
+    </div>
 
-{% comment %} 메뉴 바 {% endcomment %}
-<div class="container">
-  <div class="mt-5">
-    <table class="table table-hover text-center">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Stack</th>
-          <th scope="col">Count</th>
-          <th scope="col">More</th>
-          <th scope="col">More</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for item in stk_rank %}
-          {% if forloop.counter|divisibleby:2 == 0 %}
-            <tr class="table-secondary">
-          {% else %}
-            <tr class="table-success">
-          {% endif %}
-            <th scope="row">{{forloop.counter}}</th>
-            
-              <td><img src="/media/{{item.img}}" width="30px"></td>
-            
-              <td><img src="/media/icon/dummy.png" width="30px"></td>
-            
-            {% comment %} <td>{{item.img}}</td> {% endcomment %}
-            <td>{{item.name}}</td>
-            <td>{{item.wants_stacks__count}}</td>
-            <td><a href="{{item.stackshareLink}}">More Info</a></td>
+    <div class="mt-5">
+      <table class="table table-hover text-center">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Stack</th>
+            <th scope="col"></th>
+            <th scope="col">Count</th>
+            <th scope="col">More</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {% for item in stk_rank %}
+            {% if forloop.counter|divisibleby:2 == 0 %}
+              <tr class="table-secondary">
+            {% else %}
+              <tr class="table-success">
+            {% endif %}
+              <th scope="row">{{forloop.counter}}</th>
+              
+                <td><img src="/media/{{item.img}}" width="30px"></td>
+              
+              {% comment %} <td>{{item.img}}</td> {% endcomment %}
+              <td>{{item.name}}</td>
+              <td>{{item.wants_stacks__count}}</td>
+              <td><a href="{{item.stackshareLink}}">More Info</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-
-
-
-
-      <!-- Everything below this is part of the menu-->
-    </div>
-    <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
-    <div class="overlay" id="overlay">
-      <nav class="overlay-menu">
-        <ul>
-          <li><a href="{% url 'mains:index' %}">Home</a></li>
-          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
-          <li><a href="{% url 'mains:content' %}">Content</a></li>
-          <li><a href="{% url 'mains:insite' %}">Insite</a></li>
-        </ul>
-      </nav>
-    </div>
 
 {% endblock  %}
 

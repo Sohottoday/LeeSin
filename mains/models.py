@@ -42,7 +42,8 @@ class Recruit(models.Model):
     # 데이터 베이스에 공고가 올라온 날짜
     created_at = models.DateTimeField(auto_now_add=True)
     # 원하는 기술 스택
-    wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')
+    # wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')
+    wants_stacks = models.ManyToManyField(SkillStack, related_name='posted_recruit')
     # uploed = models.TimeField(auto_now=True)
     # company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
 
