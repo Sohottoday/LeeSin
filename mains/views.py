@@ -4,8 +4,8 @@ from . import main_crawling, model_crud
 from django.http import JsonResponse
 from django.db.models import Subquery
 from django.shortcuts import render
-from django.db.models import Count
 from django.db.models import F, Sum, Count, Case, When
+from django.db.models import Q
 
 import time
 import requests
@@ -54,6 +54,10 @@ def langfilter(request, lang):
     filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
                 posted_recruit.values('id'))).values('wants_stacks').\
                 annotate(Count("wants_stacks")).order_by('-wants_stacks__count').values('wants_stacks','wants_stacks__count')
+    filtered = SkillStack.objects.extra(tables=filtered, where=['filtered.wants_stacks=skillstack.name'])
+    # filtered = SkillStack.objects.extra(tables=filtered, where=['filtered.wants_stacks=skillstack.name'])
+    # filtered = SkillStack.objects.filter(name=filtered)
+    # print(filtered.query)
     # filtered = SkillStack.objects.filter(
     #             name__in = Subquery(Recruit.objects.filter(
     #                 id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
@@ -62,20 +66,19 @@ def langfilter(request, lang):
     #                 .annotate(Count("wants_stacks")).
     #                 order_by('-wants_stacks__count').
     #                 values('wants_stacks')))
+    # print(filtered)
     
-    print(filtered.query)
-    
-
-
-
 
     # result = SkillStack.objects.extra(tables= [filtered], where = ['filtered.wants_stacks=skillstack.name'])
     # stk = filtered.objects.select_related('SkillStack')
 
     # print(filtered)
         # print(SkillStack.objects.get(name = item.wants_stacks))
-    # for item in filtered:
-    #     print(item.wants_stacks)
+    temp = []
+    for item in filtered:
+        # print(item.get('wants_stacks'))
+        temp.append(SkillStack.objects.filter(name=item.get('wants_stacks')))
+    print(temp)
     context = {
         'filtered' : filtered,
     }
