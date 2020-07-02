@@ -1,42 +1,43 @@
-from .models import *
-from . import main_crawling, model_crud
-
-from django.http import JsonResponse
-from django.db.models import Subquery
-from django.shortcuts import render
-from django.db.models import F, Sum, Count, Case, When
-from django.db.models import Q
-
 import time
 import requests
+import os
 from matplotlib import pyplot as plt
+import pprint
+
+from django.http import JsonResponse
+from django.db.models import Count, Subquery
+from django.shortcuts import render
+from django.conf import settings
+
+from .models import *
+from . import main_crawling, model_crud
 
 # Create your views here.
 
 
 def index(request):
     # main_crawling.init_setting()
-
     return render(request, 'mains/index.html')
 
 
 def menu(request):
-
     return render(request, 'mains/menu.html')
 
 
 def rank(request):
-
-    # for item in stk_cnt:
-    #     print(item)
-    return render(request, 'mains/rank.html')
+    stk_rank = SkillStack.objects.\
+                all().annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:10]
+    for item in stk_rank:
+        print(item)
+    context = {
+        'stk_rank': stk_rank,
+    }
+    return render(request, 'mains/rank.html', context)
 
 
 def content(request):
     stk_rank = SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
-        Count('posted_recruit')).order_by('-posted_recruit__count')[:20]
-    # print(stk_rank[0].img)
-    # print(stk_rank)
+        Count('posted_recruit')).order_by('-posted_recruit__count')[:15]
     context = {
         'stk_rank': stk_rank,
     }
@@ -71,7 +72,7 @@ def insite(request):
 #     #                 order_by('-wants_stacks__count').
 #     #                 values('wants_stacks')))
 #     # print(filtered)
-    
+
 
 #     # result = SkillStack.objects.extra(tables= [filtered], where = ['filtered.wants_stacks=skillstack.name'])
 #     # stk = filtered.objects.select_related('SkillStack')
@@ -91,7 +92,6 @@ def insite(request):
 #     }
 
 #     return render(request, 'mains/content.html', context)
-
 
 
 # DB 생성용
@@ -170,6 +170,7 @@ def repository(request):
 
 def setting(request):
     issues = CountIssue.objects.all()
+
     javascript = []
     java = []
     python = []
@@ -186,7 +187,7 @@ def setting(request):
     swift = []
     shell = []
     date = []
-    
+
     for issue in issues:
         javascript.append(int(issue.javascript))
         java.append(int(issue.java))
@@ -212,76 +213,81 @@ def setting(request):
     # langcount = [javascript, java, python, c, csharp, splus, go, ruby, typescript, php
     # scala, rust, kotlin, swift, shell, date]
 
-    plt.plot(date, javascript,'rs--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/javascriptgraph.png')
+    plt.plot(date, javascript, 'rs--')
+
+    print(os.path.join(settings.BASE_DIR, 'mains', 'static',
+                       'mains', 'images', 'javascriptgraph.png'))
+
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
+                             'mains', 'images', 'javascriptgraph.png'))
 
     plt.cla()
     plt.plot(date, java, 'mo--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/javagraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'javagraph.png'))
 
     plt.cla()
     plt.plot(date, python, 'c.-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/pythongraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'pythongraph.png'))
 
     plt.cla()
     plt.plot(date, c, 'rs-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/cgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'cgraph.png'))
 
     plt.cla()
     plt.plot(date, csharp, 'm.-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/csharpgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'csharpgraph.png'))
 
     plt.cla()
     plt.plot(date, cplus, 'co--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/cplusgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'cplusgraph.png'))
 
     plt.cla()
     plt.plot(date, go, 'ro-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/gograph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'gograph.png'))
 
     plt.cla()
     plt.plot(date, ruby, 'g^-.')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/rubygraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'rubygraph.png'))
 
     plt.cla()
     plt.plot(date, typescript, 'yv--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/typescriptgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
+                             'mains', 'images', 'typescriptgraph.png'))
 
     plt.cla()
     plt.plot(date, php, 'mD:')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/phpgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'phpgraph.png'))
 
     plt.cla()
     plt.plot(date, scala, 'b*-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/scalagraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'scalagraph.png'))
 
     plt.cla()
     plt.plot(date, rust, 'r>-')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/rustgraph.png')
-    
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'rustgraph.png'))
+
     plt.cla()
     plt.plot(date, kotlin, 'kx--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/kotlingraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'kotlingraph.png'))
 
     plt.cla()
     plt.plot(date, swift, 'c_:')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/swiftgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'swiftgraph.png'))
 
     plt.cla()
     plt.plot(date, shell, 'gh--')
-    plt.savefig('C:/Sohottoday/LeeSin/LeeSin/mains/static/mains/images/shellgraph.png')
+    plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
+                             'static', 'mains', 'images', 'shellgraph.png'))
     return render(request, 'mains/insite.html')
-
-
-
-
-
-# def issuepython(request):
-#     URL = 'https://api.github.com/search/issues?q=language:'
-
-#     response = requests.get(URL+'python')
-#     issue = response.json().get('total_count')
-
-#     javascript = CountIssue(python=issue)     # f'{language}'
-#     javascript.save()
-#     return render(request, 'mains/insite.html')

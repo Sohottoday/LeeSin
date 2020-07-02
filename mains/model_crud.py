@@ -16,14 +16,14 @@ def get_start_number(site_name):
     else:
         return result
 
-# 
+# 회사, 채용공고, 스택을 DB에 넣는다.
 def data_into_db(company, recuit, stacks):
     com = find_company(company)
     posting = create_recruit(recuit)
     recruit_link_company(company=com, recuit=posting)
     stack_link_recruit(recuit=posting, stacks=stacks)
 
-
+# 회사가 있는지 확인하고 없다면 회사를 반환
 def find_company(company):
     try:
         com = Company.objects.get(name=company.name)
@@ -36,7 +36,7 @@ def find_company(company):
         com = Company.objects.filter(name=company.name)[0]
     return com
 
-
+# 채용공고를 생성한다.
 def create_recruit(recuit):
     posting = Recruit(title=recuit.title, carear=recuit.job, carear_start=recuit.carear_start,
                       carear_end=recuit.carear_end, recruit_page=recuit.url,
@@ -44,7 +44,7 @@ def create_recruit(recuit):
     posting.save()
     return posting
 
-
+# 채용 공고와 회사를 관계를 맺는다.
 def recruit_link_company(company, recuit):
     company.posted_recruit.add(recuit)
 
@@ -57,13 +57,13 @@ def find_stack(name):
         stk.save()
     return stk
 
-
+# 스택과 채용 공고를 링크를 만든다.
 def stack_link_recruit(recuit, stacks):
     for name in stacks:
         stk = find_stack(name)
         recuit.wants_stacks.add(stk)
 
-
+# null인 스택이라면 빈칸을 채운다.
 def detail_null_stack():
     filered_stk = SkillStack.objects.filter(category__isnull=True)
     for i in range(len(filered_stk)):
@@ -81,9 +81,10 @@ def detail_null_stack():
             filered_stk[i].stackshareLink = cs.stackshareLink
             filered_stk[i].webpage = cs.webpage
             filered_stk[i].category = cs.category
-            # filered_stk[i].save()
         except Exception as e:
             print(f'StackDB-error-occured-name : {filered_stk[i].name}')
+            filered_stk[i].category = 'Error-occured'
+            filered_stk[i].stackshareLink = cs.stackshareLink
         filered_stk[i].save()
         time.sleep(1)
 
