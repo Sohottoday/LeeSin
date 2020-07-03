@@ -3,6 +3,7 @@ import requests
 import os
 from matplotlib import pyplot as plt
 import pprint
+import math
 
 from django.http import JsonResponse
 from django.db.models import Count, Subquery
@@ -47,11 +48,9 @@ def content(request):
 
 def contentjson(request):
     stk_rank = list(SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
-        Count('posted_recruit')).order_by('-posted_recruit__count'))
-    print(stk_rank)
-    context = {
-        'stk_rank': stk_rank,
-    }
+        Count('posted_recruit')).order_by('-posted_recruit__count'))[:100]
+    # for i in range(len(stk_rank)):
+    #     stk_rank[i]['posted_recruit__count'] = math.log(stk_rank[i].get('posted_recruit__count'))
     return JsonResponse(stk_rank, safe=False)
 
 
