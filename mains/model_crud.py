@@ -69,22 +69,15 @@ def detail_null_stack():
     for i in range(len(filered_stk)):
         cs = Crawling_Stack(filered_stk[i].name)
         result = cs.crawling_all()
-        # if result:
-        #     print(f'StackDB-error-occured-name : {filered_stk[i].name}')
-        #     filered_stk[i].category = 'Error-occured'
-        #     filered_stk[i].category = cs.stackshareLink
-        #     filered_stk[i].save()
-        #     continue
-        try:
+        if result:
             filered_stk[i].img = cs.img
             filered_stk[i].detail = cs.detail
-            filered_stk[i].stackshareLink = cs.stackshareLink
             filered_stk[i].webpage = cs.webpage
             filered_stk[i].category = cs.category
-        except Exception as e:
+        else:
             print(f'StackDB-error-occured-name : {filered_stk[i].name}')
             filered_stk[i].category = 'Error-occured'
-            filered_stk[i].stackshareLink = cs.stackshareLink
+        filered_stk[i].stackshareLink = cs.stackshareLink
         filered_stk[i].save()
         time.sleep(1)
 

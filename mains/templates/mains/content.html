@@ -7,7 +7,6 @@
 
 {% block content %}
   <div class="container col-8">
-
     <div class="mt-5">
       <table class="table table-hover text-center">
         <thead class="thead-dark">
@@ -44,13 +43,12 @@
 {% endblock  %}
 
 {% block javascript %}
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
   $('#toggle').click(function() {
     $(this).toggleClass('active');
     $('#overlay').toggleClass('open');
     });
-
-
   {% comment %} table {% endcomment %}
   $(window).on("load resize ", function() {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();

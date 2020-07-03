@@ -38,10 +38,21 @@ def rank(request):
 def content(request):
     stk_rank = SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
         Count('posted_recruit')).order_by('-posted_recruit__count')[:15]
+    print(stk_rank)
     context = {
         'stk_rank': stk_rank,
     }
     return render(request, 'mains/content.html', context)
+
+
+def contentjson(request):
+    stk_rank = list(SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
+        Count('posted_recruit')).order_by('-posted_recruit__count'))
+    print(stk_rank)
+    context = {
+        'stk_rank': stk_rank,
+    }
+    return JsonResponse(stk_rank, safe=False)
 
 
 def content1(request):
@@ -51,27 +62,31 @@ def content1(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
-# def langfilter(request, lang):
-#     result = None
-#     filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
-#                 posted_recruit.values('id'))).values('wants_stacks').\
-#                 annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
-#     print(filtered)
-#     stk_rank = SkillStack.objects.filter(name__in = Subquery(
-#         filtered.values('wants_stacks')[:10]
-#     ))
-#     # filtered = SkillStack.objects.extra(tables=filtered, where=['filtered.wants_stacks=skillstack.name'])
-#     # filtered = SkillStack.objects.filter(name=filtered)
-#     # print(filtered.query)
-#     # filtered = SkillStack.objects.filter(
-#     #             name__in = Subquery(Recruit.objects.filter(
-#     #                 id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
-#     #                 posted_recruit.values('id')))
-#     #                 .values('wants_stacks')\
-#     #                 .annotate(Count("wants_stacks")).
-#     #                 order_by('-wants_stacks__count').
-#     #                 values('wants_stacks')))
-#     # print(filtered)
+def langfilter(request, lang):
+    result = None
+    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
+                posted_recruit.values('id'))).values('wants_stacks').\
+                annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
+    stk_rank = SkillStack.objects.exclude(category='Language').filter(name__in = Subquery(
+        filtered.values('wants_stacks')
+    ))[:15]
+    context = {
+        'stk_rank' : stk_rank,
+    }
+
+    return render(request, 'mains/content.html', context)
+    # filtered = SkillStack.objects.extra(tables=filtered, where=['filtered.wants_stacks=skillstack.name'])
+    # filtered = SkillStack.objects.filter(name=filtered)
+    # print(filtered.query)
+    # filtered = SkillStack.objects.filter(
+    #             name__in = Subquery(Recruit.objects.filter(
+    #                 id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
+    #                 posted_recruit.values('id')))
+    #                 .values('wants_stacks')\
+    #                 .annotate(Count("wants_stacks")).
+    #                 order_by('-wants_stacks__count').
+    #                 values('wants_stacks')))
+    # print(filtered)
 
 
 #     # result = SkillStack.objects.extra(tables= [filtered], where = ['filtered.wants_stacks=skillstack.name'])

@@ -7,7 +7,8 @@ urlpatterns = [
     path('menu/', views.menu, name='menu'),
     path('rank/', views.rank, name='rank'),
     path('content/', views.content, name='content'),
-    #path('content/<str:lang>/filter/', views.langfilter, name='langfilter'),
+    path('content/json', views.contentjson, name='contentjson'),
+    path('content/<str:lang>/filter/', views.langfilter, name='langfilter'),
     # path('content1/', views.content1, name='content1'),
 
     path('insite/', views.insite, name='insite'),

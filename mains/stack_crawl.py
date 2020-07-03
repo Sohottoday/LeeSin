@@ -25,8 +25,9 @@ class Crawling_Stack:
             self.crawling_img(soup)
             self.crawling_detail(soup)
             self.crawling_category(soup)
+            return True
         except Exception as e:
-            print(f'StackDB-error-occured-name : {e}')
+            return False
 
     # 공식 페이지 크롤링
     def crawling_webpage(self, soup):

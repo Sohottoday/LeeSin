@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/insite.css' %}">
+{% endblock  %}
+
+{% block content %}
+{% comment %} 이미지 출력 {% endcomment %}
+<div class="container">
+ <div class="row">
+  <div class="col-2 p-0">
+  <select class="custom-select col-12 h-100" size="3">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+  </div>
+  <div class="col-10 p-0"> 
+
+    <div class="main-img">
+      <img src="{% static 'mains/images/insite.jpg' %}" id="current">
+    </div>
+  </div> 
+</div>
+</div>
+{% comment %}   
+  <div class="imgs">
+    <img src="{% static 'mains/images/insite.jpg' %}">
+    <img src="{% static 'mains/images/javascriptgraph.png' %}">
+    <img src="{% static 'mains/images/javagraph.png' %}">
+    <img src="{% static 'mains/images/pythongraph.png' %}">
+    <img src="{% static 'mains/images/cgraph.png' %}">
+    <img src="{% static 'mains/images/csharpgraph.png' %}">
+    <img src="{% static 'mains/images/cplusgraph.png' %}">
+    <img src="{% static 'mains/images/gograph.png' %}">
+    <img src="{% static 'mains/images/rubygraph.png' %}">
+    <img src="{% static 'mains/images/typescriptgraph.png' %}">
+    <img src="{% static 'mains/images/phpgraph.png' %}">
+    <img src="{% static 'mains/images/scalagraph.png' %}">
+    <img src="{% static 'mains/images/rustgraph.png' %}">
+    <img src="{% static 'mains/images/kotlingraph.png' %}">
+    <img src="{% static 'mains/images/swiftgraph.png' %}">
+    <img src="{% static 'mains/images/shellgraph.png' %}">
+
+</div> {% endcomment %}
+
+
+{% endblock  %}
+
+{% block javascript %}
+    <script>
+    // 메뉴바
+    $('#toggle').click(function() {
+        $(this).toggleClass('active');
+        $('#overlay').toggleClass('open');
+        });
+
+
+    // 이미지
+    const current = document.querySelector('#current');
+    const imgs = document.querySelector('.imgs');
+    const img = document.querySelectorAll('.imgs img');
+    const opacity = 0.6;
+
+    // 이미지 셋팅
+    img[0].style.opacity = opacity;
+
+    imgs.addEventListener('click', imgClick);
+
+    function imgClick(e) {
+    // 투명도 변경
+    img.forEach(img => (img.style.opacity = 1));
+
+    //클릭한 이미지로 변경
+    current.src = e.target.src;
+
+    // fade 효과 추가
+    current.classList.add('fade-in');
+
+    // fade효과 0.5초뒤 제거
+    setTimeout(() => current.classList.remove('fade-in'), 500);
+
+    // 투명도 조절
+    e.target.style.opacity = opacity;
+    }
+
+    </script>
+
+
+{% endblock  %}

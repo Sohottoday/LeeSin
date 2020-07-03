@@ -8,11 +8,33 @@
 
 {% block content %}
 {% comment %} 이미지 출력 {% endcomment %}
-<div class="container">
-  <div class="main-img">
+<div class="container p-0">
+  <div class="btn-group m-3 col-4 btn-Primary">
+  <button id="dropdown-show" class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    언어 선택
+  </button>
+  <div class="dropdown-menu">
+    <span class="dropdown-item" data-str="Javascript" data-img="Javascriptgraph.png">Javascript</span>
+    <span class="dropdown-item" data-str="Java" data-img="Javagraph.png">Java</span>
+    <span class="dropdown-item" data-str="Python" data-img="Pythongraph.png">Python</span>
+    <span class="dropdown-item" data-str="C" data-img="Cgraph.png">C</span>
+    <span class="dropdown-item" data-str="C#" data-img="Csharpgraph.png">C#</span>
+    <span class="dropdown-item" data-str="C++" data-img="Cplusgraph.png">C++</span>
+    <span class="dropdown-item" data-str="Go" data-img="Gograph.png">Go</span>
+    <span class="dropdown-item" data-str="Ruby" data-img="Rubygraph.png">Ruby</span>
+    <span class="dropdown-item" data-str="Typescript" data-img="Typescriptgraph.png">Typescript</span>
+    <span class="dropdown-item" data-str="Php" data-img="Phpgraph.png">Php</span>
+    <span class="dropdown-item" data-str="Scala" data-img="Scalagraph.png">Scala</span>
+    <span class="dropdown-item" data-str="Rust" data-img="Rustgraph.png">Rust</span>
+    <span class="dropdown-item" data-str="Kotlin" data-img="Kotlingraph.png">Kotlin</span>
+    <span class="dropdown-item" data-str="Swift" data-img="Swiftgraph.png">Swift</span>
+    <span class="dropdown-item" data-str="Shell" data-img="Shellgraph.png">Shell</span>
+  </div>
+</div>
+  <div class="main-img m-3 mb-5">
     <img src="{% static 'mains/images/insite.jpg' %}" id="current">
   </div>
-
+{% comment %} 
   <div class="imgs">
     <img src="{% static 'mains/images/insite.jpg' %}">
     <img src="{% static 'mains/images/javascriptgraph.png' %}">
@@ -30,8 +52,8 @@
     <img src="{% static 'mains/images/kotlingraph.png' %}">
     <img src="{% static 'mains/images/swiftgraph.png' %}">
     <img src="{% static 'mains/images/shellgraph.png' %}">
-    </div>
-</div>
+
+</div> {% endcomment %}
 
 
 {% endblock  %}
@@ -44,35 +66,20 @@
         $('#overlay').toggleClass('open');
         });
 
-
-    // 이미지
     const current = document.querySelector('#current');
-    const imgs = document.querySelector('.imgs');
-    const img = document.querySelectorAll('.imgs img');
-    const opacity = 0.6;
+    const dropdown_show = document.querySelector('#dropdown-show')
+    const dropdown_items = document.querySelectorAll('.dropdown-item')
+    const img_src = "{% static 'mains/images/' %}"
 
-    // 이미지 셋팅
-    img[0].style.opacity = opacity;
-
-    imgs.addEventListener('click', imgClick);
-
-    function imgClick(e) {
-    // 투명도 변경
-    img.forEach(img => (img.style.opacity = 1));
-
-    //클릭한 이미지로 변경
-    current.src = e.target.src;
-
-    // fade 효과 추가
-    current.classList.add('fade-in');
-
-    // fade효과 0.5초뒤 제거
-    setTimeout(() => current.classList.remove('fade-in'), 500);
-
-    // 투명도 조절
-    e.target.style.opacity = opacity;
-    }
-
+    dropdown_items.forEach( (dropdown_item) => {
+      dropdown_item.addEventListener('click', (event) => {
+        var targetId = event.target.dataset.str
+        var targetimg = event.target.dataset.img
+        dropdown_show.innerText = targetId
+        
+        current.src = img_src+targetimg;
+      })
+    } )
     </script>
 
 
