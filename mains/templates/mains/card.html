@@ -1,0 +1,21 @@
+<div class="card col-5 m-3" style="width: 18rem;">
+<h5 class="card-header">
+  <h3>해피</h3>
+</h5>
+  <img src="/media/{{stk.img}}" class="card-img-top">
+  <div class="card-body">
+    {# <a href="{% url 'posts:like' post.id %}"> #}
+    {% if post in user.like_posts.all %}
+      {# data-id="{{post.id}}"는 몇번 하트인지 확인을 하기 위해 마킹한 도구 #}
+      {# data-xxx 라고 저장을 하면 나중에 data-set으로 호출하면 전부 나온다. #}
+      <i data-id="{{post.id}}" class="fas fa-heart" style = "color : red"></i>
+    {% else %}
+      <i data-id="{{post.id}}" class="far fa-heart" style = "color : blue"></i>
+    {% endif %}
+    {# </a> #}
+    {% comment %} <h5 class="card-title">Card title</h5> {% endcomment %}
+    <p class="card-text">{{ post.content }}</p>
+    <p class="card-text">{{ post.created_at }}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

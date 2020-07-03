@@ -14,46 +14,27 @@
     언어 선택
   </button>
   <div class="dropdown-menu">
-    <span class="dropdown-item" data-str="Javascript" data-img="Javascriptgraph.png">Javascript</span>
-    <span class="dropdown-item" data-str="Java" data-img="Javagraph.png">Java</span>
-    <span class="dropdown-item" data-str="Python" data-img="Pythongraph.png">Python</span>
-    <span class="dropdown-item" data-str="C" data-img="Cgraph.png">C</span>
-    <span class="dropdown-item" data-str="C#" data-img="Csharpgraph.png">C#</span>
-    <span class="dropdown-item" data-str="C++" data-img="Cplusgraph.png">C++</span>
-    <span class="dropdown-item" data-str="Go" data-img="Gograph.png">Go</span>
-    <span class="dropdown-item" data-str="Ruby" data-img="Rubygraph.png">Ruby</span>
-    <span class="dropdown-item" data-str="Typescript" data-img="Typescriptgraph.png">Typescript</span>
-    <span class="dropdown-item" data-str="Php" data-img="Phpgraph.png">Php</span>
-    <span class="dropdown-item" data-str="Scala" data-img="Scalagraph.png">Scala</span>
-    <span class="dropdown-item" data-str="Rust" data-img="Rustgraph.png">Rust</span>
-    <span class="dropdown-item" data-str="Kotlin" data-img="Kotlingraph.png">Kotlin</span>
-    <span class="dropdown-item" data-str="Swift" data-img="Swiftgraph.png">Swift</span>
-    <span class="dropdown-item" data-str="Shell" data-img="Shellgraph.png">Shell</span>
+    <span class="dropdown-item" data-str="Javascript" data-img="javascriptgraph.png">Javascript</span>
+    <span class="dropdown-item" data-str="Java" data-img="javagraph.png">Java</span>
+    <span class="dropdown-item" data-str="Python" data-img="pythongraph.png">Python</span>
+    <span class="dropdown-item" data-str="C" data-img="cgraph.png">C</span>
+    <span class="dropdown-item" data-str="C#" data-img="csharpgraph.png">C#</span>
+    <span class="dropdown-item" data-str="C++" data-img="cplusgraph.png">C++</span>
+    <span class="dropdown-item" data-str="Go" data-img="gograph.png">Go</span>
+    <span class="dropdown-item" data-str="Ruby" data-img="rubygraph.png">Ruby</span>
+    <span class="dropdown-item" data-str="Typescript" data-img="typescriptgraph.png">Typescript</span>
+    <span class="dropdown-item" data-str="Php" data-img="phpgraph.png">Php</span>
+    <span class="dropdown-item" data-str="Scala" data-img="scalagraph.png">Scala</span>
+    <span class="dropdown-item" data-str="Rust" data-img="rustgraph.png">Rust</span>
+    <span class="dropdown-item" data-str="Kotlin" data-img="kotlingraph.png">Kotlin</span>
+    <span class="dropdown-item" data-str="Swift" data-img="swiftgraph.png">Swift</span>
+    <span class="dropdown-item" data-str="Shell" data-img="shellgraph.png">Shell</span>
   </div>
 </div>
   <div class="main-img m-3 mb-5">
     <img src="{% static 'mains/images/insite.jpg' %}" id="current">
   </div>
-{% comment %} 
-  <div class="imgs">
-    <img src="{% static 'mains/images/insite.jpg' %}">
-    <img src="{% static 'mains/images/javascriptgraph.png' %}">
-    <img src="{% static 'mains/images/javagraph.png' %}">
-    <img src="{% static 'mains/images/pythongraph.png' %}">
-    <img src="{% static 'mains/images/cgraph.png' %}">
-    <img src="{% static 'mains/images/csharpgraph.png' %}">
-    <img src="{% static 'mains/images/cplusgraph.png' %}">
-    <img src="{% static 'mains/images/gograph.png' %}">
-    <img src="{% static 'mains/images/rubygraph.png' %}">
-    <img src="{% static 'mains/images/typescriptgraph.png' %}">
-    <img src="{% static 'mains/images/phpgraph.png' %}">
-    <img src="{% static 'mains/images/scalagraph.png' %}">
-    <img src="{% static 'mains/images/rustgraph.png' %}">
-    <img src="{% static 'mains/images/kotlingraph.png' %}">
-    <img src="{% static 'mains/images/swiftgraph.png' %}">
-    <img src="{% static 'mains/images/shellgraph.png' %}">
 
-</div> {% endcomment %}
 
 
 {% endblock  %}
@@ -78,6 +59,7 @@
         dropdown_show.innerText = targetId
         
         current.src = img_src+targetimg;
+        console.log(current.src)
       })
     } )
     </script>

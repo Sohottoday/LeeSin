@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+{% endblock  %}
+
+{% block content %}
+  <div class="container h-85 col-8 mt-5">
+    <div class="h-100 col-12 pt-5 pb-5 bg-dark rounded text-light" >
+      <div class="row">
+      <div class="col-3 text-center">
+      <a href="{{stk.webpage}}">
+      <img src="/media/{{stk.img}}" width="150px">
+      </a>
+      </div>
+      <div class="col-9 ">
+      <h1 class="text-primary">{{stk.name}}</h1>
+      <p class="text-left font-italic text-info">category : {{stk.category}}</p>
+      <h5 class="text-left ">{{stk.detail}}</p>
+      </div>
+      </div>
+      <br>  
+      <hr class="bg-light">
+      <h3>Integrations</h3>
+      <br>
+      <div class="row">
+      {% for item in stk_rank %}
+        <div class="col-4">
+          <div class="card border-info mb-3" style="max-width: 18rem; height: 14rem;">
+            <div class="card-header text-dark">
+              <img src="/media/{{item.img}}" width="30px">
+              <span style="font-size:20px">
+              {{item.name}}
+              </span>
+            </div>
+            <div class="card-body text-info">
+                <p class="card-text">{{item.detail|truncatewords:15 }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock  %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  $('#toggle').click(function() {
+    $(this).toggleClass('active');
+    $('#overlay').toggleClass('open');
+    });
+  {% comment %} table {% endcomment %}
+  $(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+</script>
+{% endblock  %}

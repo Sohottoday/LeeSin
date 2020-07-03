@@ -27,8 +27,8 @@ def menu(request):
 
 
 def rank(request):
-    stk_rank = SkillStack.objects.\
-                all().annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:10]
+    stk_rank = SkillStack.objects.filter(category='Language')\
+        .annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:10]
     for item in stk_rank:
         print(item)
     context = {
@@ -38,8 +38,9 @@ def rank(request):
 
 
 def content(request):
-    stk_rank = SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
-        Count('posted_recruit')).order_by('-posted_recruit__count')[:15]
+    stk_rank = SkillStack.objects.exclude(category='Error-occured')\
+        .values('name', 'stackshareLink', 'img')\
+        .annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:15]
     print(stk_rank)
     context = {
         'stk_rank': stk_rank,
@@ -49,65 +50,44 @@ def content(request):
 
 def contentjson(request):
     stk_rank = list(SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
-        Count('posted_recruit')).order_by('-posted_recruit__count'))[:100]
+        Count('posted_recruit')).order_by('-posted_recruit__count'))[:70]
+    # print(stk_rank)
     # for i in range(len(stk_rank)):
-    #     stk_rank[i]['posted_recruit__count'] = math.log(stk_rank[i].get('posted_recruit__count'))
+    #     print(stk_rank[i])
     return JsonResponse(stk_rank, safe=False)
-
-
-def content1(request):
-    return render(request, 'mains/content1.html')
 
 
 def insite(request):
     return render(request, 'mains/insite.html')
 
+
+def insitejson(request):
+    repo = list(
+        CountRepository.objects.values(
+        'javascript', 'java', 'python', 'c', 'csharp',
+        'cplus', 'go', 'ruby', 'typescript', 'php', 'scala', 
+        'rust', 'kotlin', 'swift', 'shell'
+        )
+    )
+    return JsonResponse(repo, safe=False)
+
+
 def langfilter(request, lang):
-    result = None
+    stk = SkillStack.objects.get(name=lang)
+
     filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
-                posted_recruit.values('id'))).values('wants_stacks').\
-                annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
-    stk_rank = SkillStack.objects.exclude(category='Language').filter(name__in = Subquery(
-        filtered.values('wants_stacks')
-    ))[:15]
+                                                      posted_recruit.values('id'))).values('wants_stacks').\
+        annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
+    stk_rank = SkillStack.objects.exclude(category='Error-occured').exclude(category='Languages')\
+        .exclude(category='Language').filter(name__in=Subquery(
+            filtered.values('wants_stacks')
+        ))[:6]
     context = {
-        'stk_rank' : stk_rank,
+        'stk': stk,
+        'stk_rank': stk_rank,
     }
 
-    return render(request, 'mains/content.html', context)
-    # filtered = SkillStack.objects.extra(tables=filtered, where=['filtered.wants_stacks=skillstack.name'])
-    # filtered = SkillStack.objects.filter(name=filtered)
-    # print(filtered.query)
-    # filtered = SkillStack.objects.filter(
-    #             name__in = Subquery(Recruit.objects.filter(
-    #                 id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
-    #                 posted_recruit.values('id')))
-    #                 .values('wants_stacks')\
-    #                 .annotate(Count("wants_stacks")).
-    #                 order_by('-wants_stacks__count').
-    #                 values('wants_stacks')))
-    # print(filtered)
-
-
-#     # result = SkillStack.objects.extra(tables= [filtered], where = ['filtered.wants_stacks=skillstack.name'])
-#     # stk = filtered.objects.select_related('SkillStack')
-
-#     # print(filtered)
-#         # print(SkillStack.objects.get(name = item.wants_stacks))
-#     # stk_rank = None
-#     # for idx, item in enumerate(filtered):
-#     #     if idx == 0:
-#     #         stk_rank = SkillStack.objects.filter(name=item.get('wants_stacks'))
-#     #     else:
-#     #         stk_rank = stk_rank.union(SkillStack.objects.filter(name=item.get('wants_stacks')))
-
-#     # print(stk_rank)
-#     context = {
-#         'stk_rank' : stk_rank,
-#     }
-
-#     return render(request, 'mains/content.html', context)
-
+    return render(request, 'mains/filterd.html', context)
 
 # DB 생성용
 
@@ -228,6 +208,7 @@ def setting(request):
     # langcount = [javascript, java, python, c, csharp, splus, go, ruby, typescript, php
     # scala, rust, kotlin, swift, shell, date]
 
+    plt.cla()
     plt.plot(date, javascript, 'rs--')
     plt.xticks(date)
     plt.xlabel('Date')

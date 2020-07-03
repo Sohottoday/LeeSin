@@ -12,7 +12,7 @@
       {% comment %} align-self-center {% endcomment %}
 
 
-      <div id="chartdiv" class="h-100 col-10"></div>
+      <div id="chartdiv" class="h-100 col-10 bg-dark rounded" style="opacity: 0.8"></div>
     </div>
     
   </div>
@@ -63,20 +63,20 @@ series.heatRules.push({
  "dataField": "value"
 });
 
-series.labels.template.url = "https://stackshare.io/{word}";
+//series.labels.template.url = "https://stackshare.io/{word}";
 series.labels.template.urlTarget = "_blank";
 series.labels.template.tooltipText = "{word}: {value}";
 
 var hoverState = series.labels.template.states.create("hover");
 hoverState.properties.fill = am4core.color("#FF0000");
 
-var subtitle = chart.titles.create();
+/* var subtitle = chart.titles.create();
 subtitle.text = "(click to open)";
 
 var title = chart.titles.create();
 title.text = "Most Popular Tags @ StackOverflow";
 title.fontSize = 50;
-title.fontWeight = "800";
+title.fontWeight = "800"; */
 
 }); // end am4core.ready()
 </script>
