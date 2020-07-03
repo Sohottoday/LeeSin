@@ -1,3 +1,4 @@
+from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 import time
 import requests
 import os
@@ -229,80 +230,166 @@ def setting(request):
     # scala, rust, kotlin, swift, shell, date]
 
     plt.plot(date, javascript, 'rs--')
-
-    print(os.path.join(settings.BASE_DIR, 'mains', 'static',
-                       'mains', 'images', 'javascriptgraph.png'))
-
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Javascript')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
                              'mains', 'images', 'javascriptgraph.png'))
 
     plt.cla()
     plt.plot(date, java, 'mo--')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Java')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'javagraph.png'))
 
     plt.cla()
     plt.plot(date, python, 'c.-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Python')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'pythongraph.png'))
 
     plt.cla()
     plt.plot(date, c, 'rs-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('C')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'cgraph.png'))
 
     plt.cla()
     plt.plot(date, csharp, 'm.-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('C#')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'csharpgraph.png'))
 
     plt.cla()
     plt.plot(date, cplus, 'co--')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('C++')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'cplusgraph.png'))
 
     plt.cla()
     plt.plot(date, go, 'ro-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('GO')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'gograph.png'))
 
     plt.cla()
     plt.plot(date, ruby, 'g^-.')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Ruby')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'rubygraph.png'))
 
     plt.cla()
     plt.plot(date, typescript, 'yv--')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('TypeScript')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
                              'mains', 'images', 'typescriptgraph.png'))
 
     plt.cla()
     plt.plot(date, php, 'mD:')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('PHP')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'phpgraph.png'))
 
     plt.cla()
     plt.plot(date, scala, 'b*-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Scala')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'scalagraph.png'))
 
     plt.cla()
     plt.plot(date, rust, 'r>-')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Rust')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'rustgraph.png'))
 
     plt.cla()
     plt.plot(date, kotlin, 'kx--')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Kotlin')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'kotlingraph.png'))
 
     plt.cla()
     plt.plot(date, swift, 'c_:')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Swift')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'swiftgraph.png'))
 
     plt.cla()
     plt.plot(date, shell, 'gh--')
+    plt.xticks(date)
+    plt.xlabel('Date')
+    plt.ylabel('Issue')
+    plt.title('Shell')
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'shellgraph.png'))
     return render(request, 'mains/insite.html')
