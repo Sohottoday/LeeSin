@@ -11,6 +11,7 @@
         body {
             height: 100vh;
         }
+
     </style>
 
     {% block style %}
@@ -25,7 +26,7 @@
       <nav class="overlay-menu">
         <ul>
           <li><a href="{% url 'mains:menu' %}">Home</a></li>
-          <li><a href="{% url 'mains:rank' %}">순위보기</a></li>
+          <li><a href="{% url 'mains:rank' %}">Rank</a></li>
           <li><a href="{% url 'mains:content' %}">Content</a></li>
           <li><a href="{% url 'mains:insite' %}">Insite</a></li>
         </ul>
@@ -38,5 +39,10 @@
 
     {% block javascript %}
     {% endblock  %}
+  {% comment %} <footer>
+     <div class="copyright text-center">
+      Copyright &copy; 2020 <span>Corfing trend</span>
+    </div>
+  </footer> {% endcomment %}
 </body>
 </html>

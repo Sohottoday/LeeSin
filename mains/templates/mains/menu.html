@@ -31,53 +31,53 @@ $('#toggle').click(function() {
    $(this).toggleClass('active');
    $('#overlay').toggleClass('open');
   });
+window.onload = function(){
+  am4core.ready(function() {
 
-am4core.ready(function() {
+  // Themes begin
+  am4core.useTheme(am4themes_animated);
+  // Themes end
 
-// Themes begin
-am4core.useTheme(am4themes_animated);
-// Themes end
+  var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
+  chart.fontFamily = "Courier New";
+  var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+  series.randomness = 0.1;
+  series.rotationThreshold = 0.5;
 
-var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
-chart.fontFamily = "Courier New";
-var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-series.randomness = 0.1;
-series.rotationThreshold = 0.5;
+  axios.get(`/mains/content/json`)
+    .then( (res)=>{
+      //console.log(res.data)
+      series.data = res.data
+    } ).catch()
 
-axios.get(`/mains/content/json`)
-  .then( (res)=>{
-    console.log(res.data)
-    series.data = res.data
-  } ).catch()
+  series.dataFields.word = "name";
+  series.dataFields.url = "webpage";
+  series.dataFields.value = "posted_recruit__count";
 
-series.dataFields.word = "name";
-series.dataFields.url = "webpage";
-series.dataFields.value = "posted_recruit__count";
+  series.heatRules.push({
+  "target": series.labels.template,
+  "property": "fill",
+  "min": am4core.color("#ffff99"),
+  "max": am4core.color("#CC00CC"),
+  "dataField": "value"
+  });
 
-series.heatRules.push({
- "target": series.labels.template,
- "property": "fill",
- //"min": am4core.color("#ffff99"),
- "min": am4core.color("#ffff99"),
- "max": am4core.color("#CC00CC"),
- "dataField": "value"
-});
+  //series.labels.template.url = "https://stackshare.io/{word}";
+  series.labels.template.urlTarget = "_blank";
+  series.labels.template.tooltipText = "{word}: {value}";
 
-//series.labels.template.url = "https://stackshare.io/{word}";
-series.labels.template.urlTarget = "_blank";
-series.labels.template.tooltipText = "{word}: {value}";
+  var hoverState = series.labels.template.states.create("hover");
+  hoverState.properties.fill = am4core.color("#FF0000");
 
-var hoverState = series.labels.template.states.create("hover");
-hoverState.properties.fill = am4core.color("#FF0000");
+  /* var subtitle = chart.titles.create();
+  subtitle.text = "(click to open)";
 
-/* var subtitle = chart.titles.create();
-subtitle.text = "(click to open)";
+  var title = chart.titles.create();
+  title.text = "Most Popular Tags @ StackOverflow";
+  title.fontSize = 50;
+  title.fontWeight = "800"; */
 
-var title = chart.titles.create();
-title.text = "Most Popular Tags @ StackOverflow";
-title.fontSize = 50;
-title.fontWeight = "800"; */
-
-}); // end am4core.ready()
+  }); // end am4core.ready()
+}
 </script>
 {% endblock  %}

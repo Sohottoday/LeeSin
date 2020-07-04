@@ -10,6 +10,7 @@ urlpatterns = [
     path('content/json', views.contentjson, name='contentjson'),
     path('content/<str:lang>/', views.langfilter, name='langfilter'),
     path('insite/', views.insite, name='insite'),
+    path('insitetest/', views.insitetest, name='insitetest'),
     path('insite/json', views.insitejson, name='insitejson'),
    
     # DB 생성용

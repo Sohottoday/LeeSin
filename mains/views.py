@@ -1,10 +1,11 @@
-from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 import time
 import requests
 import os
-from matplotlib import pyplot as plt
 import pprint
 import math
+from datetime import datetime
+from matplotlib import pyplot as plt
+from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 
 from django.http import JsonResponse
 from django.db.models import Count, Subquery
@@ -60,16 +61,33 @@ def contentjson(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
+def insitetest(request):
+    return render(request, 'mains/insite2.html')
 
 def insitejson(request):
     repo = list(
         CountRepository.objects.values(
         'javascript', 'java', 'python', 'c', 'csharp',
         'cplus', 'go', 'ruby', 'typescript', 'php', 'scala', 
-        'rust', 'kotlin', 'swift', 'shell'
+        'rust', 'kotlin', 'swift', 'shell', 'date',
         )
     )
-    return JsonResponse(repo, safe=False)
+
+    repolist = []
+    for item in repo[0]:
+        if item != 'date':
+            dic = {
+                'lang' : item,
+            }
+            datelist = []
+            for element in repo:
+                datelist.append([element.get('date'),int(element.get(item))])
+                # datelist.append([element.get('date'),math.log( int(element.get(item)), 1.5 )])
+
+            dic['date'] = datelist
+            repolist.append(dic)
+
+    return JsonResponse(repolist, safe=False)
 
 
 def langfilter(request, lang):

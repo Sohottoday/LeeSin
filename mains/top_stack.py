@@ -76,11 +76,12 @@ def top_stack(num):
             top_stack[idx].img = 'icon/dummy.png'
 
     for item in top_stack:
+        print(item.name)
         stk = find_stack(item.name)
         stk.img = item.img
         stk.detail = item.detail
         stk.category = item.category
         stk.webpage = item.webpage
-        stk.stackshare = item.stackshare
+        stk.stackshare = f'https://stackshare.io/tools/top?page={item.name}'
         stk.save()
         time.sleep(1)
