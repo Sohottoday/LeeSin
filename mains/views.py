@@ -61,7 +61,7 @@ def contentjson(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
-def insitetest(request):
+def insiterepo(request):
     return render(request, 'mains/insite2.html')
 
 def insitejson(request):
