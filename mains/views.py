@@ -30,8 +30,8 @@ def menu(request):
 def rank(request):
     stk_rank = SkillStack.objects.filter(category='Language')\
         .annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:10]
-    for item in stk_rank:
-        print(item)
+    # for item in stk_rank:
+    #     print(item)
     context = {
         'stk_rank': stk_rank,
     }
@@ -42,7 +42,7 @@ def content(request):
     stk_rank = SkillStack.objects.exclude(category='Error-occured')\
         .values('name', 'stackshareLink', 'img')\
         .annotate(Count('posted_recruit')).order_by('-posted_recruit__count')[:15]
-    print(stk_rank)
+
     context = {
         'stk_rank': stk_rank,
     }
@@ -65,23 +65,41 @@ def insiterepo(request):
     return render(request, 'mains/insite2.html')
 
 def insitejson(request):
-    repo = list(
+    # repos = list(
+    #     CountRepository.objects.values(
+    #     'javascript', 'java', 'python', 'c', 'csharp',
+    #     'cplus', 'go', 'ruby', 'typescript', 'php', 'scala', 
+    #     'rust', 'kotlin', 'swift', 'shell', 'date',
+    #     )
+    # )
+    repos = list(
         CountRepository.objects.values(
-        'javascript', 'java', 'python', 'c', 'csharp',
-        'cplus', 'go', 'ruby', 'typescript', 'php', 'scala', 
-        'rust', 'kotlin', 'swift', 'shell', 'date',
+            'date', 'javascript', 'java', 'python', 'c', 'csharp',
+            'cplus', 'ruby', 'typescript', 'php',
         )
     )
 
+    langname = {
+        'javascript' : 'JavaScript', 
+        'java' : 'Java',
+        'python' : 'Python',
+        'c' : 'C',
+        'csharp' : 'C#',
+        'cplus' : 'C++',
+        'ruby' : 'Ruby',
+        'typescript' : 'Typescript',
+        'php' : 'PHP',
+    }
+
     repolist = []
-    for item in repo[0]:
+    for item in repos[0]:
         if item != 'date':
             dic = {
-                'lang' : item,
+                'lang' : langname.get(item),
             }
             datelist = []
-            for element in repo:
-                datelist.append([element.get('date'),int(element.get(item))])
+            for reponum in range(1,len(repos)):
+                datelist.append([repos[reponum].get('date'),int(repos[reponum].get(item))])
                 # datelist.append([element.get('date'),math.log( int(element.get(item)), 1.5 )])
 
             dic['date'] = datelist
@@ -93,11 +111,11 @@ def insitejson(request):
 def langfilter(request, lang):
     stk = SkillStack.objects.get(name=lang)
 
-    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects.get(name__iexact=lang).
-                                                      posted_recruit.values('id'))).values('wants_stacks').\
-        annotate(Count("wants_stacks")).order_by('-wants_stacks__count')
-    stk_rank = SkillStack.objects.exclude(category='Error-occured').exclude(category='Languages')\
-        .exclude(category='Language').filter(name__in=Subquery(
+    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects\
+        .exclude(category='Error-occured').exclude(category='Languages').get(name__iexact=lang).\
+            posted_recruit.values('id'))).values('wants_stacks').\
+                annotate(Count("wants_stacks")).order_by('-wants_stacks__count')[:14]
+    stk_rank = SkillStack.objects.exclude(category='Error-occured').exclude(category='Language').filter(name__in=Subquery(
             filtered.values('wants_stacks')
         ))[:6]
     context = {
@@ -122,7 +140,7 @@ def issue(request):
         langcount.append(issue)
         time.sleep(7)
 
-    print(langcount)
+    # print(langcount)
 
     issuecounting = CountIssue(
         javascript=langcount[0],

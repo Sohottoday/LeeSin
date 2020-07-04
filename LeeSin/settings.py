@@ -140,5 +140,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 
 CRONJOBS = [
-    ('0 4 * * *', 'main.main_crawling.init_setting'),
+    ('15 14 * * *', 'main.main_crawling.init_setting'),
 ]

@@ -14,7 +14,7 @@
 {% block content %}
   <div class="container h-75">
     <div class ="d-flex justify-content-center align-items-center h-100 row m-5">
-      <div id="chartdiv" class="h-100 col-10 bg-dark rounded" style="opacity: 0.8"></div>
+      <div id="chartdiv" class="h-100 col-10 rounded" style="opacity: 1; background-color: ghostwhite;"></div>
     </div>  
   </div>
 {% endblock  %}
@@ -70,12 +70,14 @@ function createSeries(s, name, datelist) {
 
   var segment = series.segments.template;
   segment.interactionsEnabled = true;
+  segment.properties.strokeWidth = 4;
 
   var hoverState = segment.states.create("hover");
-  hoverState.properties.strokeWidth = 3;
+  hoverState.properties.strokeWidth = 4;
 
   var dimmed = segment.states.create("dimmed");
   dimmed.properties.stroke = am4core.color("#dadada");
+  dimmed.properties.strokeWidth = 4;
 
   segment.events.on("over", function(event) {
     processOver(event.target.parent.parent.parent);

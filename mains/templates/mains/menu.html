@@ -12,7 +12,7 @@
       {% comment %} align-self-center {% endcomment %}
 
 
-      <div id="chartdiv" class="h-100 col-10 bg-dark rounded" style="opacity: 0.8"></div>
+      <div id="chartdiv" class="h-100 col-10 bg-dark rounded" style="opacity: 0.9"></div>
     </div>
     
   </div>
@@ -57,8 +57,9 @@ window.onload = function(){
   series.heatRules.push({
   "target": series.labels.template,
   "property": "fill",
-  "min": am4core.color("#ffff99"),
-  "max": am4core.color("#CC00CC"),
+  "min": am4core.color("#cc99ff"),
+  "max": am4core.color("#ff0066"),
+//  "max": am4core.color("#CC00CC"),
   "dataField": "value"
   });
 
