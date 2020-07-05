@@ -13,7 +13,8 @@ ENV PYTHONUNBUFFERED 1
 # WORKDIR /usr/src/app
 # COPY requirements.txt ./
 RUN pip install -r requirements.txt
-RUN python3 manage.py migrate
+RUN apk add openssh \
+     && echo "root:Docker!" | chpasswd 
 # COPY . /app/
 
 EXPOSE 8000
