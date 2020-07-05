@@ -98,7 +98,7 @@ def insitejson(request):
                 'lang' : langname.get(item),
             }
             datelist = []
-            for reponum in range(1,len(repos)):
+            for reponum in range(len(repos)):
                 datelist.append([repos[reponum].get('date'),int(repos[reponum].get(item))])
                 # datelist.append([element.get('date'),math.log( int(element.get(item)), 1.5 )])
 
