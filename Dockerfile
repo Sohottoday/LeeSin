@@ -12,12 +12,14 @@ RUN apt-get update \
 RUN mkdir /app
 WORKDIR /app
 ADD . /app/
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # WORKDIR /usr/src/app
 # COPY requirements.txt ./
 RUN apt-get update
 RUN pip install -r requirements.txt
+# RUN python manage.py collectstatic
 # COPY . /app/
 
 EXPOSE 8000

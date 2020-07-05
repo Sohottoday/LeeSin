@@ -204,3 +204,12 @@ dmypy.json
 # End of https://www.toptal.com/developers/gitignore/api/django,python
 
 staticfiles/
+
+# Text backup files
+*.bak
+
+# Database
+*.sqlite3
+
+# 환경 설정 관련 파일(뒤에서 설정할 것)
+.env
