@@ -61,17 +61,12 @@ def contentjson(request):
 def insite(request):
     return render(request, 'mains/insite.html')
 
+
 def insiterepo(request):
     return render(request, 'mains/insite2.html')
 
+
 def insitejson(request):
-    # repos = list(
-    #     CountRepository.objects.values(
-    #     'javascript', 'java', 'python', 'c', 'csharp',
-    #     'cplus', 'go', 'ruby', 'typescript', 'php', 'scala', 
-    #     'rust', 'kotlin', 'swift', 'shell', 'date',
-    #     )
-    # )
     repos = list(
         CountRepository.objects.values(
             'date', 'javascript', 'java', 'python', 'c', 'csharp',
@@ -80,26 +75,27 @@ def insitejson(request):
     )
 
     langname = {
-        'javascript' : 'JavaScript', 
-        'java' : 'Java',
-        'python' : 'Python',
-        'c' : 'C',
-        'csharp' : 'C#',
-        'cplus' : 'C++',
-        'ruby' : 'Ruby',
-        'typescript' : 'Typescript',
-        'php' : 'PHP',
+        'javascript': 'JavaScript',
+        'java': 'Java',
+        'python': 'Python',
+        'c': 'C',
+        'csharp': 'C#',
+        'cplus': 'C++',
+        'ruby': 'Ruby',
+        'typescript': 'Typescript',
+        'php': 'PHP',
     }
 
     repolist = []
     for item in repos[0]:
         if item != 'date':
             dic = {
-                'lang' : langname.get(item),
+                'lang': langname.get(item),
             }
             datelist = []
             for reponum in range(len(repos)):
-                datelist.append([repos[reponum].get('date'),int(repos[reponum].get(item))])
+                datelist.append([repos[reponum].get('date'),
+                                 int(repos[reponum].get(item))])
                 # datelist.append([element.get('date'),math.log( int(element.get(item)), 1.5 )])
 
             dic['date'] = datelist
@@ -111,13 +107,13 @@ def insitejson(request):
 def langfilter(request, lang):
     stk = SkillStack.objects.get(name=lang)
 
-    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects\
-        .exclude(category='Error-occured').exclude(category='Languages').get(name__iexact=lang).\
-            posted_recruit.values('id'))).values('wants_stacks').\
-                annotate(Count("wants_stacks")).order_by('-wants_stacks__count')[:14]
+    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects
+                                                      .exclude(category='Error-occured').exclude(category='Languages').get(name__iexact=lang).
+                                                      posted_recruit.values('id'))).values('wants_stacks').\
+        annotate(Count("wants_stacks")).order_by('-wants_stacks__count')[:14]
     stk_rank = SkillStack.objects.exclude(category='Error-occured').exclude(category='Language').filter(name__in=Subquery(
-            filtered.values('wants_stacks')
-        ))[:6]
+        filtered.values('wants_stacks')
+    ))[:6]
     context = {
         'stk': stk,
         'stk_rank': stk_rank,
@@ -126,6 +122,11 @@ def langfilter(request, lang):
     return render(request, 'mains/filterd.html', context)
 
 # DB 생성용
+
+
+def recruitcrawling(request):
+    main_crawling.init_setting()
+    return render(request, 'mains/index.html')
 
 
 def issue(request):

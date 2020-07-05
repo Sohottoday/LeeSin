@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '+8&c%ymu21v*^2b&a*-51+x#8lt1$v79zklhjvv7s4+dwm52=$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '.azurewebsites.net',
@@ -139,6 +139,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
 
-CRONJOBS = [
-    ('15 14 * * *', 'main.main_crawling.init_setting'),
-]
+# CRONJOBS = [
+#     ('* * * * *', 'main.main_crawling.init_setting' '>>'+ os.path.join(BASE_DIR, 'data.log') ),
+# ]
+
+# CRONTAB_EXECUTABLE = '/usr/bin/crontab -e'
