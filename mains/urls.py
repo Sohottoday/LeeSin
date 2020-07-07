@@ -16,6 +16,7 @@ urlpatterns = [
     # DB 생성용
     path('issue/', views.issue, name='issue'),
     path('repository/', views.repository, name='repository'),
+    path('crawling/', views.recruitcrawling, name='crawling'),
     
     # 계산 하는것
     path('setting/', views.setting, name='setting'),

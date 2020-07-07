@@ -13,7 +13,7 @@ from .top_stack import top_stack
 wordDic = {}
 
 def init_setting():
-    for num in range(1,5):
+    for num in range(1,3):
         top_stack(num)
     site = ['programmers']
     start_num = model_crud.get_start_number(site[0])
