@@ -58,6 +58,16 @@ def contentjson(request):
     return JsonResponse(stk_rank, safe=False)
 
 
+def recruits(request, stk):
+    recruits = list(Recruit.objects.filter(wants_stacks = stk).order_by('-created_at'))[:15]
+    print(recruits[0].posting_company)
+    
+    context = {
+        'recruits' : recruits,
+    }
+    return render(request, 'mains/recuits.html', context)
+
+
 def insite(request):
     return render(request, 'mains/insite.html')
 

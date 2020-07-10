@@ -24,6 +24,7 @@ class SkillStack(models.Model):
     # 생성일
     created_at = models.DateTimeField(auto_now_add=True)
 
+
 class Recruit(models.Model):
     # 공고 타이틀
     title = models.CharField(max_length=50)
@@ -43,9 +44,11 @@ class Recruit(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     # 원하는 기술 스택
     # wants_stacks = models.ManyToManyField(SkillStack, related_name='wants_stacks')
-    wants_stacks = models.ManyToManyField(SkillStack, related_name='posted_recruit')
+    wants_stacks = models.ManyToManyField(
+        SkillStack, related_name='posted_recruit')
     # uploed = models.TimeField(auto_now=True)
     # company = models.ForeignKey(Company, on_delete=models.DO_NOTHING)
+
 
 class Company(models.Model):
     # 회사명
@@ -59,10 +62,8 @@ class Company(models.Model):
     # 이 데이터 생성일
     created_at = models.DateTimeField(auto_now_add=True)
     # 게시한 공고
-    posted_recruit = models.ManyToManyField(Recruit, related_name='posting_company')
-
-
-
+    posted_recruit = models.ManyToManyField(
+        Recruit, related_name='posting_company')
 
 
 # Create your models here.
@@ -84,6 +85,7 @@ class CountIssue(models.Model):
     shell = models.CharField(max_length=20)
     date = models.DateField(auto_now=True)
 
+
 class CountRepository(models.Model):
     javascript = models.CharField(max_length=20)
     java = models.CharField(max_length=20)
@@ -101,4 +103,3 @@ class CountRepository(models.Model):
     swift = models.CharField(max_length=20)
     shell = models.CharField(max_length=20)
     date = models.DateField(auto_now=True)
-

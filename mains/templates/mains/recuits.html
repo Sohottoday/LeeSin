@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'mains/stylesheet/menu.css' %}">
+{% endblock  %}
+
+{% block content %}
+  <div class="container col-10">
+    <div class="mt-5">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Rank</th>
+            <th scope="col"></th>
+            <th scope="col">Stack</th>
+            <th scope="col">Count</th>
+            <th scope="col">More</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in recruits %}
+            {% if forloop.counter|divisibleby:2 == 0 %}
+              <tr class="table-secondary">
+            {% else %}
+              <tr class="table-success">
+            {% endif %}
+              <th scope="row">{{forloop.counter}}</th>              
+              <td>{{item.id}}</td>
+              <td>{{item.title}}</td>
+              <td>{{item.carear}}</td>
+              <td>{{item.carear_start}}</td>
+              <td>{{item.carear_end}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock  %}
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  $('#toggle').click(function() {
+    $(this).toggleClass('active');
+    $('#overlay').toggleClass('open');
+    });
+  {% comment %} table {% endcomment %}
+  $(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+</script>
+{% endblock  %}

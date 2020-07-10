@@ -9,6 +9,7 @@ urlpatterns = [
     path('content/', views.content, name='content'),
     path('content/json', views.contentjson, name='contentjson'),
     path('content/<str:lang>/', views.langfilter, name='langfilter'),
+    path('recruits/<str:stk>/', views.recruits, name='recruits'),
     path('insite/', views.insite, name='insite'),
     path('insiterepo/', views.insiterepo, name='insiterepo'),
     path('insite/json', views.insitejson, name='insitejson'),
