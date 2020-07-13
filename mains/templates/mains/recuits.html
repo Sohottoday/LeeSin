@@ -11,27 +11,35 @@
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Rank</th>
+            <th scope="col">회사 명</th>
             <th scope="col"></th>
-            <th scope="col">Stack</th>
-            <th scope="col">Count</th>
+            <th scope="col">공고명</th>
+            <th scope="col">경력</th>
             <th scope="col">More</th>
           </tr>
         </thead>
         <tbody>
           {% for item in recruits %}
+          <a href="">
             {% if forloop.counter|divisibleby:2 == 0 %}
               <tr class="table-secondary">
             {% else %}
               <tr class="table-success">
             {% endif %}
-              <th scope="row">{{forloop.counter}}</th>              
-              <td>{{item.id}}</td>
+              <td>{{item.posting_company.first.name}}</td>
+              {% comment %} <td>{{item.id}}</td> {% endcomment %}
               <td>{{item.title}}</td>
               <td>{{item.carear}}</td>
-              <td>{{item.carear_start}}</td>
-              <td>{{item.carear_end}}</td>
+              {% if item.carear_start == 0 and item.carear_end == 10 %}
+                <td colspan="2">경력 무관</td>
+              {% elif item.carear_start == 0 and item.carear_end == 0 %}
+                <td colspan="2">신입</td>
+              {% else %}
+                <td>{{item.carear_start}}</td>
+                <td>{{item.carear_end}}</td>
+              {% endif %}
             </tr>
+          </a>
           {% endfor %}
         </tbody>
       </table>

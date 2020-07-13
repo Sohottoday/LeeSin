@@ -59,9 +59,8 @@ def contentjson(request):
 
 
 def recruits(request, stk):
-    recruits = list(Recruit.objects.filter(wants_stacks = stk).order_by('-created_at'))[:15]
-    print(recruits[0].posting_company)
-    
+    recruits = list(Recruit.objects.filter(wants_stacks = stk).prefetch_related('posting_company').order_by('-created_at'))[:15]
+    # print(recruits[0]._prefetched_objects_cache['posting_company'][0].name)
     context = {
         'recruits' : recruits,
     }
