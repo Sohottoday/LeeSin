@@ -11,16 +11,15 @@
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">회사 명</th>
-            <th scope="col"></th>
-            <th scope="col">공고명</th>
-            <th scope="col">경력</th>
-            <th scope="col">More</th>
+            <th class ="text-center" scope="col">회사 명</th>
+            <th class ="text-center" scope="col">공고명</th>
+            <th class ="text-center" scope="col">모집직종</th>
+            <th class ="text-center" scope="col" colspan="2">경력</th>
+            <th class ="text-center" scope="col">게시일</>
           </tr>
         </thead>
         <tbody>
           {% for item in recruits %}
-          <a href="">
             {% if forloop.counter|divisibleby:2 == 0 %}
               <tr class="table-secondary">
             {% else %}
@@ -28,18 +27,18 @@
             {% endif %}
               <td>{{item.posting_company.first.name}}</td>
               {% comment %} <td>{{item.id}}</td> {% endcomment %}
-              <td>{{item.title}}</td>
+              <td><a href="{{item.recruit_page}}">{{item.title}}</a></td>
               <td>{{item.carear}}</td>
               {% if item.carear_start == 0 and item.carear_end == 10 %}
-                <td colspan="2">경력 무관</td>
+                <td class ="text-center" colspan="2">경력 무관</td>
               {% elif item.carear_start == 0 and item.carear_end == 0 %}
-                <td colspan="2">신입</td>
+                <td class ="text-center" colspan="2">신입</td>
               {% else %}
-                <td>{{item.carear_start}}</td>
-                <td>{{item.carear_end}}</td>
+                <td class ="text-center">{{item.carear_start}}</td>
+                <td class ="text-center">{{item.carear_end}}</td>
               {% endif %}
+              <td class ="text-center">{{item.created_at|date:"Y년 F j일"}}</td>
             </tr>
-          </a>
           {% endfor %}
         </tbody>
       </table>

@@ -30,9 +30,9 @@
                 <td><img src="/media/{{item.img}}" width="30px"></td>
               
               {% comment %} <td>{{item.img}}</td> {% endcomment %}
-              <td>{{item.name}}</td>
+              <td><a href="{% url 'mains:langfilter' item.name %}">{{item.name}}</a></td>
               <td>{{item.posted_recruit__count}}</td>
-              <td><a href="{% url 'mains:langfilter' item.name %}">More Info</a></td>
+              <td><a href="{% url 'mains:recruits' item.name %}">Recruit</a></td>
             </tr>
           {% endfor %}
         </tbody>
