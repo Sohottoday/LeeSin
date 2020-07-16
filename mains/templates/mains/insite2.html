@@ -53,6 +53,7 @@ var temp = [];
 axios.get(`/mains/insite/json`)
     .then( (res)=>{
       temp = res.data
+      console.log(temp)
       for (var i = 0; i < temp.length; i++) {
         createSeries("value" + temp[i]["lang"], temp[i]["lang"], temp[i]["date"]);
       }

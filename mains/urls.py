@@ -11,8 +11,10 @@ urlpatterns = [
     path('content/<str:lang>/', views.langfilter, name='langfilter'),
     path('recruits/<str:stk>/', views.recruits, name='recruits'),
     path('insite/', views.insite, name='insite'),
+    path('issue/json', views.issuejson, name='issuejson'),
     path('insiterepo/', views.insiterepo, name='insiterepo'),
     path('insite/json', views.insitejson, name='insitejson'),
+    path('test', views.test, name='test'),
    
     # DB 생성용
     path('issue/', views.issue, name='issue'),

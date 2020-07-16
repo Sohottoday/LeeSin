@@ -74,6 +74,8 @@ def insite(request):
 def insiterepo(request):
     return render(request, 'mains/insite2.html')
 
+def test(request):
+    return render(request, 'mains/test.html')
 
 def insitejson(request):
     repos = list(
@@ -111,6 +113,44 @@ def insitejson(request):
             repolist.append(dic)
 
     return JsonResponse(repolist, safe=False)
+
+
+def issuejson(request):
+    issues = list(
+        CountIssue.objects.values(
+            'date', 'javascript', 'java', 'python', 'c', 'csharp',
+            'cplus', 'ruby', 'typescript', 'php',
+        )
+    )
+
+    langname = {
+        'javascript': 'JavaScript',
+        'java': 'Java',
+        'python': 'Python',
+        'c': 'C',
+        'csharp': 'C#',
+        'cplus': 'C++',
+        'ruby': 'Ruby',
+        'typescript': 'Typescript',
+        'php': 'PHP',
+    }
+
+    issuelist = []
+    for item in issues[0]:
+        if item != 'date':
+            dic = {
+                'lang': langname.get(item),
+            }
+            datelist = []
+            for issuenum in range(len(issues)):
+                datelist.append([issues[issuenum].get('date'),
+                                 int(issues[issuenum].get(item))])
+                # datelist.append([element.get('date'),math.log( int(element.get(item)), 1.5 )])
+
+            dic['date'] = datelist
+            issuelist.append(dic)
+
+    return JsonResponse(issuelist, safe=False)
 
 
 def langfilter(request, lang):

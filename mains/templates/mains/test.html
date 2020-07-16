@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'mains/stylesheet/nav.css' %}">
+  <style>
+#chartdiv {
+  width: 100%;
+  height: 500px;
+  max-width: 100%;
+}</style>
+{% endblock  %}
+
+{% block content %}
+  <div class="container h-75">
+    <div class ="d-flex justify-content-center align-items-center h-100 row m-5">
+    <button id="help">help</button>
+      <div id="chartdiv" class="h-100 col-10 rounded" style="opacity: 1; background-color: ghostwhite;"></div>
+    </div>  
+  </div>
+{% endblock  %}
+
+
+{% block javascript %}
+<!-- Resources -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script>
+$('#toggle').click(function() {
+   $(this).toggleClass('active');
+   $('#overlay').toggleClass('open');
+  });
+
+const help = document.querySelector('#help');
+
+help.addEventListener('click', (event) => {
+          var data = [];
+          var value = 50;
+          for(var i = 0; i < 50; i++){
+          var date = new Date();
+          date.setHours(0,0,0,0);
+          date.setDate(i);
+          value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+          data.push({date:date, value: value});
+        }
+    console.log(data);
+    help2(data);
+  })
+
+const help2 = function(data){
+am4core.ready(function() {
+
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+chart.data = data;
+
+// Create axes
+var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+dateAxis.renderer.minGridDistance = 60;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// Create series
+var series = chart.series.push(new am4charts.LineSeries());
+series.dataFields.valueY = "value";
+series.dataFields.dateX = "date";
+series.tooltipText = "{value}"
+
+series.tooltip.pointerOrientation = "vertical";
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.snapToSeries = series;
+chart.cursor.xAxis = dateAxis;
+
+//chart.scrollbarY = new am4core.Scrollbar();
+chart.scrollbarX = new am4core.Scrollbar();
+
+}); // end am4core.ready()
+}
+</script>
+{% endblock  %}

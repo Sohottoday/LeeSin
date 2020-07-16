@@ -11,7 +11,6 @@
       
       {% comment %} align-self-center {% endcomment %}
 
-
       <div id="chartdiv" class="h-100 col-10 bg-dark rounded" style="opacity: 0.9"></div>
     </div>
     
@@ -31,7 +30,6 @@ $('#toggle').click(function() {
    $(this).toggleClass('active');
    $('#overlay').toggleClass('open');
   });
-window.onload = function(){
   am4core.ready(function() {
 
   // Themes begin
@@ -63,7 +61,7 @@ window.onload = function(){
   "dataField": "value"
   });
 
-  //series.labels.template.url = "https://stackshare.io/{word}";
+  series.labels.template.url = "https://stackshare.io/{word}";
   series.labels.template.urlTarget = "_blank";
   series.labels.template.tooltipText = "{word}: {value}";
 
@@ -79,6 +77,6 @@ window.onload = function(){
   title.fontWeight = "800"; */
 
   }); // end am4core.ready()
-}
+
 </script>
 {% endblock  %}

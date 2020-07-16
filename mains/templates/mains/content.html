@@ -27,7 +27,7 @@
             {% endif %}
               <th scope="row">{{forloop.counter}}</th>
               
-                <td><img src="/media/{{item.img}}" width="30px"></td>
+                <td><a href="{% url 'mains:langfilter' item.name %}"><img src="/media/{{item.img}}" width="30px"></a></td>
               
               {% comment %} <td>{{item.img}}</td> {% endcomment %}
               <td><a href="{% url 'mains:langfilter' item.name %}">{{item.name}}</a></td>

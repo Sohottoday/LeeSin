@@ -83,7 +83,7 @@ class CountIssue(models.Model):
     kotlin = models.CharField(max_length=20)
     swift = models.CharField(max_length=20)
     shell = models.CharField(max_length=20)
-    date = models.DateField(auto_now=True)
+    date = models.DateField(auto_now_add=True)
 
 
 class CountRepository(models.Model):
@@ -102,4 +102,4 @@ class CountRepository(models.Model):
     kotlin = models.CharField(max_length=20)
     swift = models.CharField(max_length=20)
     shell = models.CharField(max_length=20)
-    date = models.DateField(auto_now=True)
+    date = models.DateField(auto_now_add=True)
