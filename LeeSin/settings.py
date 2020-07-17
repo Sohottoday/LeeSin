@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '.azurewebsites.net',
     'localhost', '127.0.0.1', '[::1]',
     '.herokuapp.com',
+    '.alphanewbie.site',
     # '*',
 ]
 

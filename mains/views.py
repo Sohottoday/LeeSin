@@ -50,7 +50,7 @@ def content(request):
 
 
 def contentjson(request):
-    stk_rank = list(SkillStack.objects.values('name', 'stackshareLink', 'img').annotate(
+    stk_rank = list(SkillStack.objects.values('name', 'stackshareLink').annotate(
         Count('posted_recruit')).order_by('-posted_recruit__count'))[:70]
     # print(stk_rank)
     # for i in range(len(stk_rank)):
