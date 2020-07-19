@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts',
     'imagekit',
     'django_crontab',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -145,3 +146,4 @@ django_heroku.settings(locals())
 # ]
 
 # CRONTAB_EXECUTABLE = '/usr/bin/crontab -e'
+FAVICON = os.path.join(BASE_DIR, 'media', 'favicon.ico')

@@ -154,17 +154,20 @@ def issuejson(request):
 
 
 def langfilter(request, lang):
-    stk = SkillStack.objects.get(name=lang)
+    stk = SkillStack.objects.filter(name=lang)
+    # stk = SkillStack.objects.get(name=lang)
 
-    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects
-                                                      .exclude(category='Error-occured').exclude(category='Languages').get(name__iexact=lang).
-                                                      posted_recruit.values('id'))).values('wants_stacks').\
-        annotate(Count("wants_stacks")).order_by('-wants_stacks__count')[:14]
+    filtered = Recruit.objects.filter(id__in=Subquery(SkillStack.objects\
+                .exclude(category='Error-occured').exclude(category='Languages').get(name__iexact=lang).\
+                posted_recruit.values('id'))).values('wants_stacks').\
+                annotate(Count("wants_stacks")).order_by('-wants_stacks__count')[:14]
     stk_rank = SkillStack.objects.exclude(category='Error-occured').exclude(category='Language').filter(name__in=Subquery(
-        filtered.values('wants_stacks')
-    ))[:6]
+                filtered.values('wants_stacks')
+    )).difference(stk)[:6]
+    # print(stk2)
+    # print(stk_rank)
     context = {
-        'stk': stk,
+        'stk': stk.first(),
         'stk_rank': stk_rank,
     }
 

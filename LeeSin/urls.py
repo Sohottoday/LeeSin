@@ -18,11 +18,14 @@ from django.urls import path, include
 from mains import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('mains/', include('mains.urls')),
     path('accounts/', include('accounts.urls')),
+    path('favicon.ico', RedirectView.as_view(url=settings.FAVICON)),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
