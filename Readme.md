@@ -94,7 +94,7 @@ Link : [Code Trend](https://cordingtrend.azurewebsites.net/mains/)
    - Content 하위 창
 
      1. 기술에 대한 정보와 세부 정보를 알려준다.
- 
+
      ![주석 2020-07-18 185038](https://user-images.githubusercontent.com/50443940/87879752-932da980-ca27-11ea-88fb-bdce10dacbd8.png)
 
      1. 스택에 관련관 채용 공고를 보여준다.
@@ -106,6 +106,7 @@ Link : [Code Trend](https://cordingtrend.azurewebsites.net/mains/)
    - Github에 게시된 언어별 이슈의 수를 보여준다.
 
    ![주석 2020-07-18 185147](https://user-images.githubusercontent.com/50443940/87879766-ad678780-ca27-11ea-951c-87a8f97abc3a.png)
+   
    ![주석 2020-07-18 185209](https://user-images.githubusercontent.com/50443940/87879768-af314b00-ca27-11ea-8fd7-ac8b41ca193d.png)
 
 
@@ -114,3 +115,12 @@ Link : [Code Trend](https://cordingtrend.azurewebsites.net/mains/)
    - Github에 게시된 언어별 레포지토리의 수를 보여준다.
 
    ![주석 2020-07-18 185225](https://user-images.githubusercontent.com/50443940/87879778-bce6d080-ca27-11ea-86f7-7bfb30f53d71.png)
+
+
+
+## 추가사항
+
+- Azure DevOps와 DockerHub를 이용한 CI/CD
+  1. 개발자가 개발을 한 후에 GitHub로 Push를 한다.
+  2. GitHub에서 Pull reqeust가 완료된 이후 자동으로 DockerHub에서 container로 빌드한다.
+  3. 빌드가 완료된 이후에 Azure DevOps에서 Azure WebApp으로 배포한다.
