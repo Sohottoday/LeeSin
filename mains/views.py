@@ -5,6 +5,7 @@ import pprint
 import math
 from datetime import datetime
 from matplotlib import pyplot as plt
+import matplotlib.dates as mdates
 from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 
 from django.http import JsonResponse
@@ -273,6 +274,7 @@ def setting(request):
     date = []
 
     for issue in issues:
+        # 너무 많아지면 이거 수정하면 될듯
         javascript.append(int(issue.javascript))
         java.append(int(issue.java))
         python.append(int(issue.python))
@@ -304,7 +306,11 @@ def setting(request):
     plt.ylabel('Issue')
     plt.title('Javascript')
     ax = plt.gca()
+
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
+    # plt.xticks(rotation=45, ha="right")
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
                              'mains', 'images', 'javascriptgraph.png'))
 
@@ -316,6 +322,8 @@ def setting(request):
     plt.title('Java')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'javagraph.png'))
 
@@ -327,6 +335,8 @@ def setting(request):
     plt.title('Python')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'pythongraph.png'))
 
@@ -338,6 +348,8 @@ def setting(request):
     plt.title('C')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'cgraph.png'))
 
@@ -349,6 +361,8 @@ def setting(request):
     plt.title('C#')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'csharpgraph.png'))
 
@@ -360,6 +374,8 @@ def setting(request):
     plt.title('C++')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'cplusgraph.png'))
 
@@ -371,6 +387,8 @@ def setting(request):
     plt.title('GO')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'gograph.png'))
 
@@ -382,6 +400,8 @@ def setting(request):
     plt.title('Ruby')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'rubygraph.png'))
 
@@ -393,6 +413,8 @@ def setting(request):
     plt.title('TypeScript')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains', 'static',
                              'mains', 'images', 'typescriptgraph.png'))
 
@@ -404,6 +426,8 @@ def setting(request):
     plt.title('PHP')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'phpgraph.png'))
 
@@ -415,6 +439,8 @@ def setting(request):
     plt.title('Scala')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'scalagraph.png'))
 
@@ -426,6 +452,8 @@ def setting(request):
     plt.title('Rust')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'rustgraph.png'))
 
@@ -437,6 +465,8 @@ def setting(request):
     plt.title('Kotlin')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'kotlingraph.png'))
 
@@ -448,6 +478,8 @@ def setting(request):
     plt.title('Swift')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'swiftgraph.png'))
 
@@ -459,6 +491,8 @@ def setting(request):
     plt.title('Shell')
     ax = plt.gca()
     ax.yaxis.set_major_formatter(FormatStrFormatter('%.0f'))
+    ax.xaxis.set_major_formatter(mdates.DateFormatter('%m-%d'))
+    plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'shellgraph.png'))
     return render(request, 'mains/insite.html')
