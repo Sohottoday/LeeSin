@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
-from decouple import config 
+# import django_heroku
+# from decouple import config 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = '6iP|cyaGrQ7CbP:ORMNeB4VTSK9e6qwM&sNdaCe;zn&3z4Qo./'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG')
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '.azurewebsites.net',
@@ -41,8 +41,8 @@ ALLOWED_HOSTS = [
 INSTALLED_APPS = [
     'mains',
     'accounts',
-    'imagekit',
-    'django_crontab',
+    # 'imagekit',
+    # 'django_crontab',
     'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -116,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'
+LANGUAGE_CODE = 'ko'
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -139,7 +139,7 @@ AUTH_USER_MODEL = 'accounts.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # CRONJOBS = [
 #     ('* * * * *', 'main.main_crawling.init_setting' '>>'+ os.path.join(BASE_DIR, 'data.log') ),

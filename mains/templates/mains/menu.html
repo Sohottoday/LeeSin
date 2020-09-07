@@ -61,7 +61,7 @@ $('#toggle').click(function() {
   "dataField": "value"
   });
 
-  series.labels.template.url = "https://stackshare.io/{word}";
+  series.labels.template.url = "https://stackshare.io/search/q={word}";
   series.labels.template.urlTarget = "_blank";
   series.labels.template.tooltipText = "{word}: {value}";
 

@@ -215,7 +215,7 @@ def issue(request):
     )
 
     issuecounting.save()
-    return render(request, 'mains/insite.html')
+    return render(request, 'mains/index.html')
 
 
 def repository(request):
@@ -250,7 +250,7 @@ def repository(request):
     )
 
     repocounting.save()
-    return render(request, 'mains/insite.html')
+    return render(request, 'mains/index.html')
 
 
 def setting(request):
@@ -273,24 +273,48 @@ def setting(request):
     shell = []
     date = []
 
-    for issue in issues:
+    point = 1
+    if len(issues) >= 20:
+        point = int(len(issues)/20)+1
+
+    # for i in range(0, len(issues), point):
+    #     print(int(issues[i].javascript))
+
+    for i in range(len(issues)-1, 0, -point):
         # 너무 많아지면 이거 수정하면 될듯
-        javascript.append(int(issue.javascript))
-        java.append(int(issue.java))
-        python.append(int(issue.python))
-        c.append(int(issue.c))
-        csharp.append(int(issue.csharp))
-        cplus.append(int(issue.cplus))
-        go.append(int(issue.go))
-        ruby.append(int(issue.ruby))
-        typescript.append(int(issue.typescript))
-        php.append(int(issue.php))
-        scala.append(int(issue.scala))
-        rust.append(int(issue.rust))
-        kotlin.append(int(issue.kotlin))
-        swift.append(int(issue.swift))
-        shell.append(int(issue.shell))
-        date.append(issue.date)
+        javascript.append(int(issues[i].javascript))
+        java.append(int(issues[i].java))
+        python.append(int(issues[i].python))
+        c.append(int(issues[i].c))
+        csharp.append(int(issues[i].csharp))
+        cplus.append(int(issues[i].cplus))
+        go.append(int(issues[i].go))
+        ruby.append(int(issues[i].ruby))
+        typescript.append(int(issues[i].typescript))
+        php.append(int(issues[i].php))
+        scala.append(int(issues[i].scala))
+        rust.append(int(issues[i].rust))
+        kotlin.append(int(issues[i].kotlin))
+        swift.append(int(issues[i].swift))
+        shell.append(int(issues[i].shell))
+        date.append(issues[i].date)
+
+    javascript.reverse()
+    java.reverse()
+    python.reverse()
+    c.reverse()
+    csharp.reverse()
+    cplus.reverse()
+    go.reverse()
+    ruby.reverse()
+    typescript.reverse()
+    php.reverse()
+    scala.reverse()
+    rust.reverse()
+    kotlin.reverse()
+    swift.reverse()
+    shell.reverse()
+    date.reverse()
     # print(javascript)
     # print(java)
 
@@ -495,4 +519,4 @@ def setting(request):
     plt.xticks(rotation=45)
     plt.savefig(os.path.join(settings.BASE_DIR, 'mains',
                              'static', 'mains', 'images', 'shellgraph.png'))
-    return render(request, 'mains/insite.html')
+    return render(request, 'mains/index.html')

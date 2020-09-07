@@ -2,11 +2,17 @@ from django.contrib import admin
 from .models import SkillStack, Recruit, Company, CountIssue, CountRepository
 # Register your models here.
 
+
 class CountIssueAdmin(admin.ModelAdmin):
-    list_display= [f.name for f in CountIssue._meta.fields]
+    list_display = [f.name for f in CountIssue._meta.fields]
+
+
+class CountRepositoryAdmin(admin.ModelAdmin):
+    list_display = [f.name for f in CountRepository._meta.fields]
+
 
 admin.site.register(SkillStack)
 admin.site.register(Recruit)
 admin.site.register(Company)
-admin.site.register(CountIssue,CountIssueAdmin)
-admin.site.register(CountRepository)
+admin.site.register(CountIssue, CountIssueAdmin)
+admin.site.register(CountRepository, CountRepositoryAdmin)

@@ -27,7 +27,7 @@
             {% endif %}
               <td>{{item.posting_company.first.name}}</td>
               {% comment %} <td>{{item.id}}</td> {% endcomment %}
-              <td><a href="{{item.recruit_page}}">{{item.title}}</a></td>
+              <td><a href="{{item.recruit_page}}">{{item.title|truncatewords:5}}</a></td>
               <td>{{item.carear}}</td>
               {% if item.carear_start == 0 and item.carear_end == 10 %}
                 <td class ="text-center" colspan="2">경력 무관</td>

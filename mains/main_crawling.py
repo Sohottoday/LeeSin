@@ -12,8 +12,9 @@ from .top_stack import top_stack
 
 wordDic = {}
 
+
 def init_setting():
-    for num in range(1,2):
+    for num in range(1, 2):
         top_stack(num)
     site = ['programmers']
     start_num = model_crud.get_start_number(site[0])
@@ -22,7 +23,8 @@ def init_setting():
         crawling(site[0], start_num+1, start_num+50)
     else:
         crawling(site[0], start_num+1, start_num+2100)
-    
+
+
 def crawling(site, start_num, end_num):
     for num in range(start_num, end_num):
         print(num)
@@ -41,14 +43,14 @@ def crawling(site, start_num, end_num):
             company = CompanyCrawling()
             company.crawling_compnay_all(soup)
             # 공고 정보 크롤링
-            recruit = RecruitCrawling(index=num, url=url, site = site)
+            recruit = RecruitCrawling(index=num, url=url, site=site)
             recruit.crawling_recruit_all(soup)
             # 스택 크롤링
             stk = StackCrawling(num)
             stacks = stk.crawling_stack_all(soup)
             # 크롤링한 데이터 DB인젝션
-            model_crud.data_into_db(company,recruit,stacks)
+            model_crud.data_into_db(company, recruit, stacks)
         except Exception as e:
             print(f'crawling-error : {e}')
-    
+
     model_crud.detail_null_stack()
