@@ -2,8 +2,8 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup
 
-# urls = ["http://127.0.0.1:8000/mains"]
-urls = ["https://cordingtrend.azurewebsites.net/mains", "http://127.0.0.1:8000/mains"]
+urls = ["http://127.0.0.1:8000/mains"]
+# urls = ["https://cordingtrend.azurewebsites.net/mains", "http://127.0.0.1:8000/mains"]
 for url in urls:
     print(url + " - test")
     i = 1
